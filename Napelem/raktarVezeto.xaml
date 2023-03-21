@@ -1,0 +1,42 @@
+﻿<Window x:Class="Napelem.raktarVezeto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Napelem"
+        ResizeMode="NoResize"
+        mc:Ignorable="d"
+        Title="raktarVezeto" Height="450" Width="600">
+    <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabItem Header="Main table">
+                <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Label Content="Warehouse manager main" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <Button Name="mainExitBtn" Content="Exit" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" RenderTransformOrigin="-0.089,1.096" Height="25" Width="60" FontSize="16" FontWeight="Bold" Click="mainExitBtn_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="New assets">
+                <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBox HorizontalAlignment="Left" Margin="74,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="25"/>
+                    <Label Content="Name" Foreground="White" HorizontalAlignment="Left" Margin="74,45,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
+                    <Label Content="Price" Foreground="White" HorizontalAlignment="Left" Margin="77,94,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
+                    <TextBox HorizontalAlignment="Left" Margin="77,125,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25" />
+                    <Label Content="Max quantity" Foreground="White" HorizontalAlignment="Left" Margin="77,148,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
+                    <TextBox HorizontalAlignment="Left" Margin="77,179,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25" />
+                    <Button Content="Add" HorizontalAlignment="Left" Margin="119,209,0,0" VerticalAlignment="Top" Width="60" Height="25" FontSize="16" FontWeight="Bold" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Prices">
+                <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ComboBox HorizontalAlignment="Center" Margin="0,124,0,0" VerticalAlignment="Top" Width="150" Height="25"/>
+                    <Label Content="Product" Foreground="White" HorizontalAlignment="Center" Margin="0,88,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Height="25"/>
+                    <Label Content="New price" Foreground="White" HorizontalAlignment="Center" Margin="0,154,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.576,1.706"/>
+                    <Button Content="Change price" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" Margin="0,235,0,0" FontWeight="Bold"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</Window>

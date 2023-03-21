@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Napelem"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="admin" Height="400" Width="450">
-    <Grid Background="#FF1B1919" Height="400" Width="450">
+    <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <TextBox Name="nameTextBox" HorizontalAlignment="Center" Margin="0,110,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20"/>
         <ComboBox Name="roleComboBox" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="150" Height="20">
             <ComboBoxItem Content="warehouse manager"/>
@@ -18,7 +19,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="147,85,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
         <TextBlock HorizontalAlignment="Left" Margin="147,135,0,0" TextWrapping="Wrap" Text="Role:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
         <TextBlock HorizontalAlignment="Left" Margin="147,184,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
-        <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Margin="10,337,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="60" Height="20" Click="backBtn_Click"/>
+        <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Margin="10,0,0,20" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Width="60" Height="25" Click="backBtn_Click" FontSize="16" FontWeight="Bold"/>
         <Label Content="Registrate new worker" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="28" FontFamily="Haettenschweiler"/>
     </Grid>
 </Window>

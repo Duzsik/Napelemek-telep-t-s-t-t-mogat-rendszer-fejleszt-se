@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Napelem"
+        ResizeMode="NoResize"
         mc:Ignorable="d"
         Title="Login" Height="350" Width="400">
 
@@ -16,6 +17,7 @@
         <PasswordBox Name="passwordBox" HorizontalAlignment="Center" Margin="0,216,0,0" VerticalAlignment="Top" Width="162" Height="22" />
         <TextBox Name="passwordTxtBox" HorizontalAlignment="Center" Margin="0,216,0,0" VerticalAlignment="Top" Width="162" Height="22" Visibility="Collapsed"/>
         <CheckBox Name="ShowPass" HorizontalAlignment="Left" Margin="297,219,0,0" VerticalAlignment="Top" Checked="ShowPass_Checked" Unchecked="ShowPass_Unchecked" />
+        <Button Name="raktarBtn" Content="Button" HorizontalAlignment="Left" Margin="34,266,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.04,0.502" Click="raktarBtn_Click"/>
     </Grid>
 
 

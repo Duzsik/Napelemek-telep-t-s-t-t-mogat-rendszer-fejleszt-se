@@ -46,5 +46,12 @@ namespace Napelem
             adminWindow.Show();
 
         }
+
+        private void raktarBtn_Click(object sender, RoutedEventArgs e)
+        {
+            raktarVezeto raktarVezetoWindow = new raktarVezeto();
+            this.Close();
+            raktarVezetoWindow.Show();
+        }
     }
 }
