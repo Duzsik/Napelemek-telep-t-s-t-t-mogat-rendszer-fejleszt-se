@@ -38,5 +38,13 @@ namespace Napelem
             passwordTxtBox.Visibility = Visibility.Collapsed;
             passwordBox.Visibility = Visibility.Visible;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            admin adminWindow = new admin();
+            this.Close();
+            adminWindow.Show();
+
+        }
     }
 }

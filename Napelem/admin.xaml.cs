@@ -23,5 +23,12 @@ namespace Napelem
         {
             InitializeComponent();
         }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow objmainWindow = new MainWindow();
+            this.Close();
+            objmainWindow.Show();
+        }
     }
 }
