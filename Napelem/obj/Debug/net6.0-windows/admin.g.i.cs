@@ -93,7 +93,7 @@ namespace Napelem {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Napelem;component/admin.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Napelem;V1.0.0.0;component/admin.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\admin.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
