@@ -36,5 +36,23 @@ namespace Napelem
         {
             exit();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(string.IsNullOrEmpty(assetNameTextBox.Text.ToString()) || string.IsNullOrEmpty(assetPriceTextBox.Text.ToString()) || string.IsNullOrEmpty(assetMaxTextBox.Text.ToString()))
+            {
+                MessageBox.Show("Fill all the textboxes .");
+            }
+            else
+            {
+                Database.Component comp = new Database.Component();
+                comp.name = assetNameTextBox.Text.ToString();
+                comp.price = int.Parse(assetPriceTextBox.Text);
+                comp.maxQuantity = int.Parse(assetMaxTextBox.Text);
+                Database.Database data = new Database.Database();
+                data.InsertNewAssets(comp);
+
+            }
+        }
     }
 }

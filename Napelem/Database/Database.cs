@@ -163,7 +163,6 @@ namespace Napelem.Database
                 string sql = "INSERT INTO employee (name, role, username, password) VALUES (@name, @role, @username, @password)";
                 using (var command = new NpgsqlCommand(sql, GetPostgreSQLConnection()))
                 {
-                    command.Parameters.AddWithValue("employeeID", employee.employeeID);
                     command.Parameters.AddWithValue("name", employee.name);
                     command.Parameters.AddWithValue("role", employee.role);
                     command.Parameters.AddWithValue("username", employee.username);
@@ -206,6 +205,59 @@ namespace Napelem.Database
             }
             return false; // No employee with the given username and password was found
 
+        }
+        public void InsertNewAssets(Component comp)
+        {
+            if (CheckIfComponentExists(comp) == true)
+            {
+                MessageBox.Show("This asset already exists!");
+            }
+            else
+            {
+                string sql = "INSERT INTO component (name, quantity, maxQuantity, price) VALUES (@name, 0, @maxQuantity, @price)";
+                using (var command = new NpgsqlCommand(sql, GetPostgreSQLConnection()))
+                {
+                    command.Parameters.AddWithValue("name", comp.name);
+                    command.Parameters.AddWithValue("maxQuantity", comp.maxQuantity);
+                    command.Parameters.AddWithValue("price", comp.price);
+
+                    try
+                    {
+                        command.CommandText = sql;
+                        command.ExecuteNonQuery();
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+                    }
+                    MessageBox.Show("Asset inserted!");
+
+                }
+
+            }
+
+        }
+        public bool CheckIfComponentExists(Component comp)
+        {
+            string sql = "SELECT COUNT(*) FROM component WHERE name = @name";
+            using (var command = new NpgsqlCommand(sql, GetPostgreSQLConnection()))
+            {
+                command.Parameters.AddWithValue("name", comp.name);
+
+                try
+                {
+                    long count = (long)command.ExecuteScalar();
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    // handle exceptions here, e.g. log error message, show friendly error to user
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            return false; // No employee with the given username and password was found
         }
     }
 

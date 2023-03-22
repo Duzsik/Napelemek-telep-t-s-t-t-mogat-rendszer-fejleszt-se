@@ -58,25 +58,25 @@ namespace Napelem
                 {
                     MessageBox.Show("This user doesn't exists.");
                 }
-                else if (employee.role == "admin")
+                if (employee.role == "admin")
                 {
                     admin adminWindow = new admin();
                     this.Close();
                     adminWindow.Show();
                 }
-                else if (employee.role != "professional")
+                if (employee.role == "professional")
                 {
                     professional professionalWindow = new professional();
                     this.Close();
                     professionalWindow.Show();
                 }
-                else if (employee.role != "warehouse worker")
+                if (employee.role == "warehouse worker")
                 {
                     raktaros wareHouseWorker = new raktaros();
                     this.Close();
                     wareHouseWorker.Show();
                 }
-                else if (employee.role != "warehouse manager")
+                if (employee.role == "warehouse manager")
                 {
                     raktarVezeto wareHouseManager = new raktarVezeto();
                     this.Close();
