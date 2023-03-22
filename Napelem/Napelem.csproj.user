@@ -10,6 +10,12 @@
     <Compile Update="admin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="professional.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="raktaros.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="raktarVezeto.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,6 +25,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="mainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="professional.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="raktaros.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="raktarVezeto.xaml">
