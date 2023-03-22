@@ -70,13 +70,13 @@ namespace Napelem
                     this.Close();
                     professionalWindow.Show();
                 }
-                else if (employee.role != "warehouseworker")
+                else if (employee.role != "warehouse worker")
                 {
                     raktaros wareHouseWorker = new raktaros();
                     this.Close();
                     wareHouseWorker.Show();
                 }
-                else if (employee.role != "warehousemanager")
+                else if (employee.role != "warehouse manager")
                 {
                     raktarVezeto wareHouseManager = new raktarVezeto();
                     this.Close();

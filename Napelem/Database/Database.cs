@@ -119,7 +119,7 @@ namespace Napelem.Database
         }
         public Employee GetEmployeeByUsernameAndPassword(string username, string password)
         {
-          
+
             string sql = "SELECT * FROM Employee WHERE username = @username AND password= @password";
             using (var command = new NpgsqlCommand(sql, GetPostgreSQLConnection()))
             {
@@ -152,24 +152,64 @@ namespace Napelem.Database
             }
             return null; // No employee with the given username and password was found
         }
+        public void InsertEmployeesToDatabase(Employee employee)
+        {
+            if (CheckIfUserExists(employee)==true) 
+            {
+                MessageBox.Show("This user already exists!");
+            }
+            else
+            {
+                string sql = "INSERT INTO employee (name, role, username, password) VALUES (@name, @role, @username, @password)";
+                using (var command = new NpgsqlCommand(sql, GetPostgreSQLConnection()))
+                {
+                    command.Parameters.AddWithValue("employeeID", employee.employeeID);
+                    command.Parameters.AddWithValue("name", employee.name);
+                    command.Parameters.AddWithValue("role", employee.role);
+                    command.Parameters.AddWithValue("username", employee.username);
+                    command.Parameters.AddWithValue("password", employee.password);
 
-    } 
+                    try
+                    {
+                        command.CommandText = sql;
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+
+            }
+            
+
+        }
+        public bool CheckIfUserExists(Employee employee)
+        {
+            string sql = "SELECT COUNT(*) FROM Employee WHERE username = @username";
+            using (var command = new NpgsqlCommand(sql, GetPostgreSQLConnection()))
+            {
+                command.Parameters.AddWithValue("username", employee.username);           
+
+                try
+                {
+                    long count = (long)command.ExecuteScalar();
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    // handle exceptions here, e.g. log error message, show friendly error to user
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            return false; // No employee with the given username and password was found
+
+        }
+    }
 
 
 
 }
 
-/*
-using (NpgsqlConnection connection = GetPostgreSQLConnection())
-{
-    using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM my_table", connection))
-    {
-        using (NpgsqlDataReader reader = command.ExecuteReader())
-        {
-            while (reader.Read())
-            {
-                // process results
-            }
-        }
-    }
-}*/
