@@ -3,48 +3,139 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql;
 
 namespace Napelem.Database
 {
     public class Database
     {
-        public void CreateDatabaseConnection()
+
+        public NpgsqlConnection GetPostgreSQLConnection()
         {
-            // Connection string parameters
-            string host = "localhost";
-            string database = "mydatabase";
-            string username = "myusername";
-            string password = "mypassword";
+            string connectionString = "Server=localhost;Port=5432;Database=mydatabase;User Id=postgres;Password=password;";
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+               
+            }
+            return connection;
+        }
 
-            // Build connection string
-            string connString = $"Host={host};Database={database};Username={username};Password={password}";
+        public void CreateTables(NpgsqlConnection connection)
+        {
+            var createEmployeeTable = @"
+        CREATE TABLE Employee (
+            employeeID SERIAL PRIMARY KEY,
+            name VARCHAR(100) NOT NULL,
+            role VARCHAR(50) NOT NULL,
+            username VARCHAR(2) NOT NULL,
+            password VARCHAR(10) NOT NULL
+        );";
 
-            // Create connection object
-            using (var conn = new NpgsqlConnection(connString))
+            var createProjectTable = @"
+        CREATE TABLE Project (
+            projectID SERIAL PRIMARY KEY,
+            employeeID INTEGER NOT NULL,
+            name VARCHAR(50) NOT NULL,
+            status VARCHAR(100) NOT NULL,
+            projectPrice INTEGER NOT NULL,
+            FOREIGN KEY (employeeID) REFERENCES Employee (employeeID)
+        );";
+
+            var createLogTable = @"
+        CREATE TABLE Log (
+            logID SERIAL PRIMARY KEY,
+            projectID INTEGER NOT NULL,
+            status VARCHAR(50) NOT NULL,
+            timestamp timestamp NOT NULL,
+            FOREIGN KEY (projectID) REFERENCES Project (projectID)
+        );";
+
+            var createReservationTable = @"
+        CREATE TABLE Reservation (
+            reservationID SERIAL PRIMARY KEY,
+            projectID INTEGER NOT NULL,
+            componentID INTEGER NOT NULL,
+            FOREIGN KEY (projectID) REFERENCES Project (projectID),
+            FOREIGN KEY (componentID) REFERENCES Component (componentID)
+        );";
+
+            var createComponentTable = @"
+        CREATE TABLE Component (
+            componentID SERIAL PRIMARY KEY,
+            name VARCHAR(50) NOT NULL,
+            quantity INTEGER NOT NULL,
+            maxQuantity INTEGER NOT NULL,
+            price INTEGER NOT NULL
+        );";
+
+            var createStorageTable = @"
+        CREATE TABLE Storage (
+            storageID SERIAL PRIMARY KEY,
+            componentID INTEGER NOT NULL,
+            rows INTEGER NOT NULL,
+            columns INTEGER NOT NULL,
+            level INTEGER NOT NULL,
+            FOREIGN KEY (componentID) REFERENCES Component (componentID)
+        );";
+
+            using (var command = new NpgsqlCommand())
             {
                 try
                 {
-                    // Open connection
-                    conn.Open();
+                    command.Connection = connection;
+                    command.CommandText = createEmployeeTable;
+                    command.ExecuteNonQuery();
 
-                    // Do something with the connection
-                    Console.WriteLine("Connection opened successfully.");
+                    command.CommandText = createProjectTable;
+                    command.ExecuteNonQuery();
 
-                    // Close connection
-                    conn.Close();
-                    Console.WriteLine("Connection closed successfully.");
+                    command.CommandText = createLogTable;
+                    command.ExecuteNonQuery();
+
+                    command.CommandText = createComponentTable;
+                    command.ExecuteNonQuery();
+
+                    command.CommandText = createReservationTable;
+                    command.ExecuteNonQuery();
+                    
+                    command.CommandText = createStorageTable;
+                    command.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error: {ex.Message}");
+                    Console.WriteLine(ex.Message);
                 }
+                
             }
         }
 
+
     }
+
     
 
 
 
 }
+
+/*
+using (NpgsqlConnection connection = GetPostgreSQLConnection())
+{
+    using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM my_table", connection))
+    {
+        using (NpgsqlDataReader reader = command.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                // process results
+            }
+        }
+    }
+}*/
