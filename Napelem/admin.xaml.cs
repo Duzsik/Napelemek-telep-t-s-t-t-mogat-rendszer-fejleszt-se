@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Napelem.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,25 @@ namespace Napelem
             MainWindow objmainWindow = new MainWindow();
             this.Close();
             objmainWindow.Show();
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+               if (string.IsNullOrEmpty(nameTextBox.Text.ToString()) || string.IsNullOrEmpty(roleComboBox.Text.ToString()) || string.IsNullOrEmpty(userNameTextBox.Text.ToString()) || string.IsNullOrEmpty(passTextBox.Password.ToString()))
+                {
+                    MessageBox.Show("Fill all the textboxes.");
+                }
+                else
+                {
+                    Employee employee = new Employee();
+                    employee.name = nameTextBox.Text.ToString();
+                    employee.role = roleComboBox.Text.ToString();
+                    employee.username = userNameTextBox.Text.ToString();
+                    employee.password = passTextBox.Password.ToString();
+                    Database.Database data = new Database.Database();
+                    data.InsertEmployeesToDatabase(employee);
+                }  
         }
     }
 }

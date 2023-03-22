@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Napelem
 {
@@ -20,9 +21,12 @@ namespace Napelem
     /// </summary>
     public partial class MainWindow : Window
     {
+        Database.Database data = new Database.Database();
         public MainWindow()
         {
             InitializeComponent();
+            Database.Database data = new Database.Database();
+            data.CreateTables(data.GetPostgreSQLConnection());
         }
 
         private void ShowPass_Checked(object sender, RoutedEventArgs e)
@@ -39,11 +43,51 @@ namespace Napelem
             passwordBox.Visibility = Visibility.Visible;
         }
 
+        //Login button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            admin adminWindow = new admin();
-            this.Close();
-            adminWindow.Show();
+            if (string.IsNullOrEmpty(userTextBox.Text.ToString()) || string.IsNullOrEmpty(passwordBox.Password.ToString()))
+            {
+                MessageBox.Show("Fill the textboxs!");
+            }
+            else
+            {
+                Database.Employee employee = new Database.Employee();
+                employee = data.GetEmployeeByUsernameAndPassword(userTextBox.Text.ToString(), passwordBox.Password.ToString());
+                if (employee == null)
+                {
+                    MessageBox.Show("This user doesn't exists.");
+                }
+                if (employee.role == "admin")
+                {
+                    admin adminWindow = new admin();
+                    this.Close();
+                    adminWindow.Show();
+                }
+                if (employee.role == "professional")
+                {
+                    professional professionalWindow = new professional();
+                    this.Close();
+                    professionalWindow.Show();
+                }
+                if (employee.role == "warehouse worker")
+                {
+                    raktaros wareHouseWorker = new raktaros();
+                    this.Close();
+                    wareHouseWorker.Show();
+                }
+                if (employee.role == "warehouse manager")
+                {
+                    raktarVezeto wareHouseManager = new raktarVezeto();
+                    this.Close();
+                    wareHouseManager.Show();
+
+                }
+
+            }
+
+            
+
 
         }
 
