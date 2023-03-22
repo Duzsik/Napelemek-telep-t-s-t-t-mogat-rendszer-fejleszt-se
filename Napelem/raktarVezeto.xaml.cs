@@ -63,6 +63,17 @@ namespace Napelem
                 comp.maxQuantity = int.Parse(assetMaxTextBox.Text);
                 Database.Database data = new Database.Database();
                 data.InsertNewAssets(comp);
+                List<Database.Component> components = data.LoadComponents();
+                if (components != null)
+                {
+                    ProductComboBox.Items.Clear();
+                    foreach (Database.Component component in components)
+                    {
+                        string componentData = component.componentID.ToString() + " " + component.name;
+                        ProductComboBox.Items.Add(componentData);
+                    }
+                    ProductComboBox.SelectedIndex = 0;
+                }
 
             }
         }
