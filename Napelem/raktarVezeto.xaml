@@ -32,11 +32,11 @@
                         <ColumnDefinition Width="91*"/>
                         <ColumnDefinition Width="503*"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox HorizontalAlignment="Left" Margin="131,124,0,0" VerticalAlignment="Top" Width="150" Height="25" Grid.Column="1"/>
+                    <ComboBox Name="ProductComboBox" HorizontalAlignment="Left" Margin="131,124,0,0" VerticalAlignment="Top" Width="150" Height="25" Grid.Column="1"/>
                     <Label Content="Product" Foreground="White" HorizontalAlignment="Left" Margin="171,88,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Height="25" Grid.Column="1" Margin="131,0,0,0"/>
+                    <TextBox Name="NewPriceTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Height="25" Grid.Column="1" Margin="131,0,0,0" TextChanged="NewPriceTextBox_TextChanged"/>
                     <Label Content="New price" Foreground="White" HorizontalAlignment="Left" Margin="163,154,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.576,1.706" Grid.Column="1"/>
-                    <Button Content="Change price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="155,235,0,0" FontWeight="Bold" Grid.Column="1"/>
+                    <Button Content="Change price" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="155,235,0,0" FontWeight="Bold" Grid.Column="1" Click="Button_Click_1"/>
                 </Grid>
             </TabItem>
 

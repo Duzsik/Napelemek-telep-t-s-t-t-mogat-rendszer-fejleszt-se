@@ -30,6 +30,18 @@ namespace Napelem
         public raktarVezeto()
         {
             InitializeComponent();
+            Database.Database data = new Database.Database();
+            List<Database.Component> components = data.LoadComponents();
+            if(components != null)
+            {
+                ProductComboBox.Items.Clear();
+                foreach(Database.Component component in components )
+                {
+                    string componentData = component.componentID.ToString() + " " + component.name;
+                    ProductComboBox.Items.Add(componentData);
+                }
+                ProductComboBox.SelectedIndex = 0;
+            }
         }
 
         private void mainExitBtn_Click(object sender, RoutedEventArgs e)
@@ -53,6 +65,25 @@ namespace Napelem
                 data.InsertNewAssets(comp);
 
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(string.IsNullOrEmpty(NewPriceTextBox.Text.ToString()))
+            {
+                MessageBox.Show("Fill all the textboxes.");
+            }
+            else
+            {
+                Database.Database data = new Database.Database();
+                data.UpdatePriceOfComponent(ProductComboBox.Text.ToString(), int.Parse(NewPriceTextBox.Text.ToString()));
+            }
+            
+        }
+
+        private void NewPriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

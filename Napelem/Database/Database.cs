@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Azure.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Napelem.Database
 {
@@ -258,6 +261,72 @@ namespace Napelem.Database
                 }
             }
             return false; // No employee with the given username and password was found
+        }
+
+
+
+        public List<Component> LoadComponents()
+        {
+            try
+            {
+                // Create a connection to the PostgreSQL database
+            
+                    // Create a command to select the data from the table
+                    using (NpgsqlCommand command = new NpgsqlCommand($"SELECT componentID, name, quantity, maxQuantity, price FROM component", GetPostgreSQLConnection()))
+                    {
+                        // Execute the command and read the results
+                        using (NpgsqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Create a list to hold the Component objects
+                            List<Component> components = new List<Component>();
+
+                            // Loop through the results and add them to the ComboBox and the list
+                            while (reader.Read())
+                            {
+                                Component component = new Component
+                                {
+                                    componentID = reader.GetInt32(0),
+                                    name = reader.GetString(1),
+                                    quantity = reader.GetInt32(2),
+                                    maxQuantity = reader.GetInt32(3),
+                                    price = reader.GetInt32(4)
+                                };
+                                components.Add(component);
+                            }
+
+                        // Store the list of components in the ComboBox's Tag property
+                        return components;
+                        }
+                    }              
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors that occur
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        public void UpdatePriceOfComponent(string component,int price)
+        {
+            string id = component.Split(' ')[0];
+            string sql = "UPDATE component set price = @price WHERE componentid = @id";
+            using (var command = new NpgsqlCommand(sql, GetPostgreSQLConnection()))
+            {
+                command.Parameters.AddWithValue("id", int.Parse(id));
+                command.Parameters.AddWithValue("price", price);
+
+                try
+                {
+                    command.CommandText = sql;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                MessageBox.Show("The product's price has benn updated.");
+            }
         }
     }
 
