@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Napelem.Database
 {
-    internal class Models
-    {
+    
         public class Employee
         {
             public int employeeID { get; set; }
@@ -57,4 +56,4 @@ namespace Napelem.Database
             public int price { get; set; }
         }
     }
-}
+

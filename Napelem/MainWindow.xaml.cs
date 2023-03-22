@@ -21,9 +21,12 @@ namespace Napelem
     /// </summary>
     public partial class MainWindow : Window
     {
+        Database.Database data = new Database.Database();
         public MainWindow()
         {
             InitializeComponent();
+            Database.Database data = new Database.Database();
+            data.CreateTables(data.GetPostgreSQLConnection());
         }
 
         private void ShowPass_Checked(object sender, RoutedEventArgs e)
@@ -40,11 +43,51 @@ namespace Napelem
             passwordBox.Visibility = Visibility.Visible;
         }
 
+        //Login button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            admin adminWindow = new admin();
-            this.Close();
-            adminWindow.Show();
+            if (string.IsNullOrEmpty(userTextBox.Text.ToString()) || string.IsNullOrEmpty(passwordBox.Password.ToString()))
+            {
+                MessageBox.Show("Fill the textboxs!");
+            }
+            else
+            {
+                Database.Employee employee = new Database.Employee();
+                employee = data.GetEmployeeByUsernameAndPassword(userTextBox.Text.ToString(), passwordBox.Password.ToString());
+                if (employee == null)
+                {
+                    MessageBox.Show("This user doesn't exists.");
+                }
+                else if (employee.role == "admin")
+                {
+                    admin adminWindow = new admin();
+                    this.Close();
+                    adminWindow.Show();
+                }
+                else if (employee.role != "professional")
+                {
+                    professional professionalWindow = new professional();
+                    this.Close();
+                    professionalWindow.Show();
+                }
+                else if (employee.role != "warehouseworker")
+                {
+                    raktaros wareHouseWorker = new raktaros();
+                    this.Close();
+                    wareHouseWorker.Show();
+                }
+                else if (employee.role != "warehousemanager")
+                {
+                    raktarVezeto wareHouseManager = new raktarVezeto();
+                    this.Close();
+                    wareHouseManager.Show();
+
+                }
+
+            }
+
+            
+
 
         }
 

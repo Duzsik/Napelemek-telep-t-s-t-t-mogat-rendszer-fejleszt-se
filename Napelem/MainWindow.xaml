@@ -12,12 +12,11 @@
         <TextBox x:Name="userTextBox" HorizontalAlignment="Center"  Margin="0,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Visibility="Visible" Height="22"/>
         <TextBlock x:Name="UserLabel" HorizontalAlignment="Center" Margin="0,137,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" RenderTransformOrigin="-0.122,-0.06" Foreground="White" FontSize="16" FontWeight="Bold"/>
         <TextBlock x:Name="PassLabel" HorizontalAlignment="Center" Margin="0,190,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" RenderTransformOrigin="-0.122,-0.06" Foreground="White" FontSize="16" FontWeight="Bold"/>
-        <Button Content="Button" HorizontalAlignment="Center" Margin="0,253,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.222,-1.2" Height="27" Width="162" Click="Button_Click"/>
+        <Button Content="Login" HorizontalAlignment="Center" Margin="0,253,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.222,-1.2" Height="27" Width="162" Click="Button_Click"/>
         <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Center" Margin="0,44,0,0" TextWrapping="Wrap" Text="ALL IN ENERGY" VerticalAlignment="Top" IsEnabled="False" FontSize="72" FontStyle="Normal" FontWeight="Normal" FontFamily="Haettenschweiler"  Foreground="White"/>
         <PasswordBox Name="passwordBox" HorizontalAlignment="Center" Margin="0,216,0,0" VerticalAlignment="Top" Width="162" Height="22" />
         <TextBox Name="passwordTxtBox" HorizontalAlignment="Center" Margin="0,216,0,0" VerticalAlignment="Top" Width="162" Height="22" Visibility="Collapsed"/>
         <CheckBox Name="ShowPass" HorizontalAlignment="Left" Margin="297,219,0,0" VerticalAlignment="Top" Checked="ShowPass_Checked" Unchecked="ShowPass_Unchecked" />
-        <Button Name="raktarBtn" Content="Button" HorizontalAlignment="Left" Margin="34,266,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.04,0.502" Click="raktarBtn_Click"/>
     </Grid>
 
 
