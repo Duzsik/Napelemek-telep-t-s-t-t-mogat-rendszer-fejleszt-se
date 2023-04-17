@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Egyetem\rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\
+D:\Egyetem\6.felev\Git\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\
 Napelem
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\Egyetem\rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\App.xaml
-5-1699021140
+D:\Egyetem\6.felev\Git\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\App.xaml
+51604404660
 
-11724441898
-2231688503491
-admin.xaml;MainWindow.xaml;professional.xaml;raktaros.xaml;raktarVezeto.xaml;
+11800854242
+223258651513
+Frontend\admin.xaml;Frontend\MainWindow.xaml;Frontend\professional.xaml;Frontend\raktaros.xaml;Frontend\raktarVezeto.xaml;
 
-False
+True
 
