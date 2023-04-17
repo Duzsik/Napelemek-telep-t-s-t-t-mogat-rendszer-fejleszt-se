@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Npgsql;
+using Napelem.Connection;
 
 namespace Napelem
 {
@@ -21,11 +22,17 @@ namespace Napelem
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        Connection.TCPConnection TCP;
+    
         public MainWindow()
         {
             InitializeComponent();
-
+            TCP = new Connection.TCPConnection();
+            Closing += Window_Closing;
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TCP.TCPCloseConnection();
         }
 
         private void ShowPass_Checked(object sender, RoutedEventArgs e)
@@ -53,6 +60,10 @@ namespace Napelem
             raktarVezeto raktarVezetoWindow = new raktarVezeto();
             this.Close();
             raktarVezetoWindow.Show();
+        }
+        private void Grid_ContextMenuClosing(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
