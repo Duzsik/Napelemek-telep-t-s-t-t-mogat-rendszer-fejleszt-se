@@ -23,15 +23,17 @@ namespace Napelem.Connection
             client = new TcpClient();
             client.Connect(serverIpAddress, port);
 
-            // Üzenet küldése a szervernek
-            stream = client.GetStream();
-            byte[] data = Encoding.ASCII.GetBytes("Hello, szerver!");
-            stream.Write(data, 0, data.Length);
-            Console.WriteLine("Üzenet elküldve a szervernek.");
-
-            // Kapcsolat lezárása
+            
          
             Console.ReadLine();
+        }
+        public void TCPSendMessage(string message)
+        {
+            // Üzenet küldése a szervernek
+            stream = client.GetStream();
+            byte[] data = Encoding.ASCII.GetBytes(message);
+            stream.Write(data, 0, data.Length);
+            Console.WriteLine("Üzenet elküldve a szervernek.");
         }
         public void TCPCloseConnection()
         {

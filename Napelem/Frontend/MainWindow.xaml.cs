@@ -52,7 +52,7 @@ namespace Napelem
         //Login button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            TCP.TCPSendMessage("Login button pressed.");
         }
 
         private void raktarBtn_Click(object sender, RoutedEventArgs e)
