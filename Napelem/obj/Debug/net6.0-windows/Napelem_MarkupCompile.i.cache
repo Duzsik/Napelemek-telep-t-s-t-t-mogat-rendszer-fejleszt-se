@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Egyetem\6.felev\Git\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\App.xaml
-51604404660
+5847088721
 
-10-629363483
+10-535512928
 223258651513
-Frontend\admin.xaml;Frontend\MainWindow.xaml;Frontend\professional.xaml;Frontend\raktaros.xaml;Frontend\raktarVezeto.xaml;
+Frontend\admin.xaml;Frontend\MainWindow.xaml;Frontend\professional.xaml;Frontend\stockKeeper.xaml;Frontend\storageManager.xaml;
 
-True
+False
 

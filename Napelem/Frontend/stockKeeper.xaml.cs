@@ -17,10 +17,10 @@ namespace Napelem
     /// <summary>
     /// Interaction logic for raktaros.xaml
     /// </summary>
-    public partial class raktaros : Window
+    public partial class stockKeeper : Window
     {
         public Connection.TCPConnection TCP;
-        public raktaros()
+        public stockKeeper()
         {
             InitializeComponent();
             TCP = new Connection.TCPConnection();

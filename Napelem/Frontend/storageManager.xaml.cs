@@ -19,7 +19,7 @@ namespace Napelem
     /// </summary>
     /// 
     
-    public partial class raktarVezeto : Window
+    public partial class storageManager : Window
     {
         void exit()
         {
@@ -28,7 +28,7 @@ namespace Napelem
             objmainWindow.Show();
         }
         public Connection.TCPConnection TCP;
-        public raktarVezeto()
+        public storageManager()
         {
             InitializeComponent();
             TCP = new Connection.TCPConnection();
