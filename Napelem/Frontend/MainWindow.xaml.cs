@@ -12,18 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Npgsql;
 using Napelem.Connection;
+
 
 namespace Napelem
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
     {
-        Connection.TCPConnection TCP;
-    
+        public Connection.TCPConnection TCP;
         public MainWindow()
         {
             InitializeComponent();
@@ -52,15 +52,9 @@ namespace Napelem
         //Login button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TCP.TCPSendMessage("Login button pressed.");
+            TCP.TCPSendMessage("Login");
         }
 
-        private void raktarBtn_Click(object sender, RoutedEventArgs e)
-        {
-            raktarVezeto raktarVezetoWindow = new raktarVezeto();
-            this.Close();
-            raktarVezetoWindow.Show();
-        }
         private void Grid_ContextMenuClosing(object sender, RoutedEventArgs e)
         {
 

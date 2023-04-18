@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Napelem.Connection;
 
 namespace Napelem
 {
@@ -19,9 +20,17 @@ namespace Napelem
     /// </summary>
     public partial class admin : Window
     {
+
+        public Connection.TCPConnection TCP;
         public admin()
         {
             InitializeComponent();
+            TCP = new Connection.TCPConnection();
+            Closing += Window_Closing;
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TCP.TCPCloseConnection();
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
@@ -33,7 +42,7 @@ namespace Napelem
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            TCP.TCPSendMessage("Add worker");                
         }
     }
 }

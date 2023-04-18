@@ -19,9 +19,16 @@ namespace Napelem
     /// </summary>
     public partial class raktaros : Window
     {
+        public Connection.TCPConnection TCP;
         public raktaros()
         {
             InitializeComponent();
+            TCP = new Connection.TCPConnection();
+            Closing += Window_Closing;
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TCP.TCPCloseConnection();
         }
     }
 }

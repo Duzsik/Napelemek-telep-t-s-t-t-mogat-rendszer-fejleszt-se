@@ -19,9 +19,16 @@ namespace Napelem
     /// </summary>
     public partial class professional : Window
     {
+        public Connection.TCPConnection TCP;
         public professional()
         {
             InitializeComponent();
+            TCP = new Connection.TCPConnection();
+            Closing += Window_Closing;
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TCP.TCPCloseConnection();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

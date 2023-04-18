@@ -27,10 +27,16 @@ namespace Napelem
             this.Close();
             objmainWindow.Show();
         }
+        public Connection.TCPConnection TCP;
         public raktarVezeto()
         {
             InitializeComponent();
-
+            TCP = new Connection.TCPConnection();
+            Closing += Window_Closing;
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TCP.TCPCloseConnection();
         }
 
         private void mainExitBtn_Click(object sender, RoutedEventArgs e)
@@ -38,20 +44,15 @@ namespace Napelem
             exit();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void addItem(object sender, RoutedEventArgs e)
         {
-
+            TCP.TCPSendMessage("Add item");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void changePriceBtn(object sender, RoutedEventArgs e)
         {
-
-            
+            TCP.TCPSendMessage("Change price");            
         }
 
-        private void NewPriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }
