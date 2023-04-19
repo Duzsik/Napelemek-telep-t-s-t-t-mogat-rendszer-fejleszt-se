@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Egyetem\6.felev\Git\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\
+C:\Users\RAYKO\Documents\GitHub\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\
 Napelem
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\Egyetem\6.felev\Git\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\App.xaml
+C:\Users\RAYKO\Documents\GitHub\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\App.xaml
 5847088721
 
 10-535512928
-223258651513
+194-1617825143
 Frontend\admin.xaml;Frontend\MainWindow.xaml;Frontend\professional.xaml;Frontend\stockKeeper.xaml;Frontend\storageManager.xaml;
 
-True
+False
 

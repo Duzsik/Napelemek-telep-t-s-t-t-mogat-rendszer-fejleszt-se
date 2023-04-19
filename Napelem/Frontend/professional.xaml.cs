@@ -19,6 +19,12 @@ namespace Napelem
     /// </summary>
     public partial class professional : Window
     {
+        void exit()
+        {
+            MainWindow objmainWindow = new MainWindow();
+            this.Close();
+            objmainWindow.Show();
+        }
         public Connection.TCPConnection TCP;
         public professional()
         {
@@ -34,6 +40,26 @@ namespace Napelem
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void newProject_exit1(object sender, RoutedEventArgs e)
+        {
+            exit();
+        }
+
+        private void Project_exitBtn(object sender, RoutedEventArgs e)
+        {
+            exit();
+        }
+
+        private void change_status_Btn(object sender, RoutedEventArgs e)
+        {
+            TCP.TCPSendMessage("Change project status");
+        }
+
+        private void addAssetsToProjectBtn(object sender, RoutedEventArgs e)
+        {
+            TCP.TCPSendMessage("Add assets to prject");
         }
     }
 }

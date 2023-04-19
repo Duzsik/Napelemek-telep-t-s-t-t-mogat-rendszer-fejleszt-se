@@ -49,7 +49,7 @@ namespace Napelem
             TCP.TCPSendMessage("Add item");
         }
 
-        private void changePriceBtn(object sender, RoutedEventArgs e)
+        private void changePrice_Quantity_Btn(object sender, RoutedEventArgs e)
         {
             TCP.TCPSendMessage("Change price");            
         }
