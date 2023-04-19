@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Napelem"
         mc:Ignorable="d"
-        Title="professional" Height="450" Width="800">
+        Title="Professional" Height="450" Width="800">
     <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <TabControl>
             <TabItem Header="Projects">
@@ -21,13 +21,13 @@
                     <Button Content="Exit" HorizontalAlignment="Left" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="40" FontSize="16" FontWeight="Bold" Click="Project_exitBtn"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="New project">
+            <TabItem Header="Project management">
                 <Grid Background="#FF1B1919">
                     <Label Content="Professional's project page" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
                     <Button Content="Exit" HorizontalAlignment="Left" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="40" FontSize="16" FontWeight="Bold" Click="newProject_exit1"/>
-                    <Label Content="Select assets to the project:" HorizontalAlignment="Left" Margin="44,160,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <Label Content="Select  project id:" HorizontalAlignment="Left" Margin="40,160,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <ComboBox HorizontalAlignment="Left" Margin="268,166,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
-                    <Label Content="Added assets:" HorizontalAlignment="Left" Margin="44,254,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <Label Content="Added assets:" HorizontalAlignment="Left" Margin="40,286,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <TextBox HorizontalAlignment="Left" Margin="174,64,0,0" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Top" Width="120"/>
                     <TextBox HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" Text="Estimated work time" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Project ID" HorizontalAlignment="Left" Margin="95,61,0,0" VerticalAlignment="Top" Foreground="White"/>
@@ -37,6 +37,12 @@
                     <TextBox HorizontalAlignment="Left" Margin="497,65,0,0" TextWrapping="Wrap" Text="Estimated work price" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Projects estimated price with assets:" HorizontalAlignment="Left" Margin="411,301,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <Label Content="Price" HorizontalAlignment="Left" Margin="697,304,0,0" VerticalAlignment="Top" Foreground="White"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="268,203,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+                    <Label Content="Select assets to the project:" HorizontalAlignment="Left" Margin="40,198,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <Label Content="Select asset quantity:" HorizontalAlignment="Left" Margin="40,229,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <TextBox HorizontalAlignment="Left" Margin="268,236,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="120"/>
+                    <Button Content="Add asset to the project" HorizontalAlignment="Left" Margin="411,198,0,0" VerticalAlignment="Top" Height="32" Width="160"/>
+                    <Label Content="Assets" HorizontalAlignment="Left" Margin="147,312,0,0" VerticalAlignment="Top" Foreground="White"/>
                 </Grid>
             </TabItem>
         </TabControl>
