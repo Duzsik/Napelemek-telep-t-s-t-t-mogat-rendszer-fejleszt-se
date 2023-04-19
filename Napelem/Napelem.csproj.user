@@ -13,10 +13,10 @@
     <Compile Update="Frontend\professional.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Frontend\raktaros.xaml.cs">
+    <Compile Update="Frontend\stockKeeper.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Frontend\raktarVezeto.xaml.cs">
+    <Compile Update="Frontend\storageManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -30,10 +30,10 @@
     <Page Update="Frontend\professional.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Frontend\raktaros.xaml">
+    <Page Update="Frontend\stockKeeper.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Frontend\raktarVezeto.xaml">
+    <Page Update="Frontend\storageManager.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
