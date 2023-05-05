@@ -7,33 +7,33 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="admin.xaml.cs">
+    <Compile Update="Frontend\admin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="professional.xaml.cs">
+    <Compile Update="Frontend\professional.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="raktaros.xaml.cs">
+    <Compile Update="Frontend\stockKeeper.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="raktarVezeto.xaml.cs">
+    <Compile Update="Frontend\storageManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="admin.xaml">
+    <Page Update="Frontend\admin.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="mainWindow.xaml">
+    <Page Update="Frontend\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="professional.xaml">
+    <Page Update="Frontend\professional.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="raktaros.xaml">
+    <Page Update="Frontend\stockKeeper.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="raktarVezeto.xaml">
+    <Page Update="Frontend\storageManager.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
