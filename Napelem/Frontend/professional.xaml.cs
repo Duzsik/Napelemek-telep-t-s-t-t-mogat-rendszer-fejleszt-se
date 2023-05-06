@@ -25,17 +25,11 @@ namespace Napelem
             this.Close();
             objmainWindow.Show();
         }
-        public Connection.TCPConnection TCP;
         public professional()
         {
             InitializeComponent();
-            TCP = new Connection.TCPConnection();
-            Closing += Window_Closing;
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            TCP.TCPCloseConnection();
-        }
+
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -54,12 +48,12 @@ namespace Napelem
 
         private void change_status_Btn(object sender, RoutedEventArgs e)
         {
-            TCP.TCPSendMessage("Change project status");
+            
         }
 
         private void addAssetsToProjectBtn(object sender, RoutedEventArgs e)
         {
-            TCP.TCPSendMessage("Add assets to prject");
+           
         }
     }
 }

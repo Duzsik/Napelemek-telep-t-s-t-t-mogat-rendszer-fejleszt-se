@@ -19,16 +19,11 @@ namespace Napelem
     /// </summary>
     public partial class stockKeeper : Window
     {
-        public Connection.TCPConnection TCP;
+       
         public stockKeeper()
         {
             InitializeComponent();
-            TCP = new Connection.TCPConnection();
-            Closing += Window_Closing;
-        }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            TCP.TCPCloseConnection();
+       
         }
     }
 }
