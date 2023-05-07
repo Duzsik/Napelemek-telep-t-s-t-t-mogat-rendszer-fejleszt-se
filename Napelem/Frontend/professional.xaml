@@ -14,6 +14,9 @@
                     <TextBox HorizontalAlignment="Left" Margin="40,35,0,0" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Top" Width="120"/>
                     <TextBox HorizontalAlignment="Left" Margin="199,37,0,0" TextWrapping="Wrap" Text="Project status" VerticalAlignment="Top" Width="120"/>
                     <Button Content="Filter project" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top"/>
+                    <Grid Height="280" Width="750" >
+                        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                    </Grid>
                     <Label Content="Change status" HorizontalAlignment="Left" Margin="106,345,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="3"/>
                     <TextBox HorizontalAlignment="Left" Margin="261,353,0,0" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Top" Width="120"/>
                     <TextBox HorizontalAlignment="Left" Margin="418,353,0,0" TextWrapping="Wrap" Text="Project status" VerticalAlignment="Top" Width="120"/>
@@ -43,6 +46,14 @@
                     <TextBox HorizontalAlignment="Left" Margin="268,236,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="120"/>
                     <Button Content="Add asset to the project" HorizontalAlignment="Left" Margin="411,198,0,0" VerticalAlignment="Top" Height="32" Width="160"/>
                     <Label Content="Assets" HorizontalAlignment="Left" Margin="147,312,0,0" VerticalAlignment="Top" Foreground="White"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Assets">
+                <Grid Background="#FF1B1919">
+                    <Label Content="Assets" HorizontalAlignment="Left" Margin="24,17,0,0" VerticalAlignment="Top" Foreground="white" FontSize="16"/>
+                    <Grid Height="300" Width="750" >
+                        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>
