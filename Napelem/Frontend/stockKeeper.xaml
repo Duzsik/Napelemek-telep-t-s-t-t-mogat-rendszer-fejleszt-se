@@ -36,7 +36,15 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    <Button Style="{StaticResource RoundeButtonTemplate}" Content="Take out asset" HorizontalAlignment="Left" Margin="64,171,0,0" VerticalAlignment="Top" Width="135" Height="20"/>
+                    <Button Style="{StaticResource RoundeButtonTemplate}" 
+                            Content="Take out asset" 
+                            HorizontalAlignment="Left"
+                            Margin="64,171,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="135" Height="20"
+                            FontWeight="Bold"
+                            Foreground="Black"
+                            Background="Orange"/>
                     <Label Content="Best available route:" HorizontalAlignment="Left" Margin="50,353,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" />
                     <Grid Height="260" Width="400" Margin="323,76,71,70">
                         <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
