@@ -9,10 +9,10 @@ namespace Napelem.Models
 {
     public class Log
     {
+        [Key]
         public int logID { get; set; }
         public int projectID { get; set; }
         public string? status { get; set; }
         public string? timestamp { get; set; }
-        public string? objectType { get; set; }
     }
 }

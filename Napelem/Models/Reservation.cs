@@ -9,9 +9,9 @@ namespace Napelem.Models
 {
     public class Reservation
     {
+        [Key]
         public int reservationID { get; set; }
         public int projectID { get; set; }
         public int componentID { get; set; }
-        public string? objectType { get; set; }
     }
 }
