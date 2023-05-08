@@ -22,7 +22,13 @@ namespace Napelem
     /// Interaction logic for raktarVezeto.xaml
     /// </summary>
     /// 
-    
+
+    public class ComponentStorage
+    {
+        public Component Component { get; set; }
+        public Storage Storage { get; set; }
+    }
+
     public partial class storageManager : Window
     {
         void exit()
@@ -46,6 +52,8 @@ namespace Napelem
                 for (int i = 0; i < components.Count; i++)
                 {
                     ProductComboBox.Items.Add(components[i].componentID +" "+ components[i].name);
+                    ProductComboBox_Copy.Items.Add(components[i].componentID +" "+ components[i].name);
+                   
                 }
             }
         }
@@ -134,6 +142,29 @@ namespace Napelem
         private void NewPriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private async void SetStorageClick(object sender, RoutedEventArgs e)
+        {
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+            Component comp = new Component();
+            string[] compData = ProductComboBox_Copy.Text.Split(' ');
+            comp.componentID = int.Parse(compData[0]);
+            Storage stor = new Storage();
+            stor.level = int.Parse(textBoxLevel.Text);
+            stor.row = int.Parse(textBoxRow.Text);
+            stor.column = int.Parse(textBoxColumn.Text);
+            stor.componentID = comp.componentID;
+            ComponentStorage compStor = new ComponentStorage();
+            compStor.Component = comp;
+            compStor.Storage = stor;
+            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(compStor), System.Text.Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"api/Storage/AddComponentToStorage", content);
+            if (response.IsSuccessStatusCode == true)
+            {
+                MessageBox.Show("Intake was successful.");
+            }
         }
     }
 }
