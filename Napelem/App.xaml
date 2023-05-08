@@ -25,7 +25,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                        <Border CornerRadius="10" Background="Green" BorderBrush="AliceBlue" BorderThickness="1">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
 
                             </ContentPresenter>
@@ -47,6 +47,20 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="RoundedComboboxTemplate" TargetType="ComboBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="AliceBlue" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
 
 
     </Application.Resources>
