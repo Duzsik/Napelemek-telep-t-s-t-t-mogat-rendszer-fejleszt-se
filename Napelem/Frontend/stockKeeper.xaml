@@ -28,7 +28,14 @@
                     <Label Content="Choose asset" HorizontalAlignment="Left" Margin="23,84,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
                     <ComboBox HorizontalAlignment="Left" Margin="142,91,0,0" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Add quantity" HorizontalAlignment="Left" Margin="24,125,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,133,0,0" TextWrapping="Wrap" Text="quaintity" VerticalAlignment="Top" Width="118"/>
+                    <TextBox HorizontalAlignment="Left" Margin="144,133,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="118">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
                     <Button Style="{StaticResource RoundeButtonTemplate}" Content="Take out asset" HorizontalAlignment="Left" Margin="64,171,0,0" VerticalAlignment="Top" Width="135" Height="20"/>
                     <Label Content="Best available route:" HorizontalAlignment="Left" Margin="50,353,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" />
                     <Grid Height="260" Width="400" Margin="323,76,71,70">
