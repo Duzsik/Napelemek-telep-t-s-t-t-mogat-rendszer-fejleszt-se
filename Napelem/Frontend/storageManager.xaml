@@ -25,25 +25,65 @@
             </TabItem>
             <TabItem Header="New assets">
                 <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <TextBox Style="{StaticResource RoundedTextboxTemplate}" Name="assetNameTextBox" Margin="219,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="25" HorizontalAlignment="Left"/>
+                    <TextBox Name="assetNameTextBox" Margin="219,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="25" HorizontalAlignment="Left">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
                     <Label Content="Name" Foreground="White" HorizontalAlignment="Left" Margin="220,49,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
                     <Label Content="Price" Foreground="White" HorizontalAlignment="Left" Margin="220,100,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox Style="{StaticResource RoundedTextboxTemplate}" Name="assetPriceTextBox" Margin="0,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25" />
+                    <TextBox Name="assetPriceTextBox" Margin="0,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                     <Label Content="Max quantity" Foreground="White" HorizontalAlignment="Left" Margin="220,154,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox Style="{StaticResource RoundedTextboxTemplate}" Margin="0,183,0,0" Name="assetMaxTextBox" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25" />
+                    <TextBox Margin="0,183,0,0" Name="assetMaxTextBox" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                     <Button Style="{StaticResource RoundeButtonTemplate}" Content="Add new asset" HorizontalAlignment="Left" Margin="187,248,0,0" VerticalAlignment="Top" Width="220" Height="25" FontSize="16" FontWeight="Bold" Click="addItem" Grid.ColumnSpan="2" />
                 </Grid>
             </TabItem>
             <TabItem Header="Intake">
-                <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <TextBox Style="{StaticResource RoundedTextboxTemplate}" x:Name="assetNameTextBox_Copy" HorizontalAlignment="Left" Margin="214,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="25"/>
+                <Grid Background="#FF1B1919">
+                    <TextBox x:Name="assetNameTextBox_Copy" HorizontalAlignment="Left" Margin="216,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="25">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                     <Label Content="Sor" Foreground="White" HorizontalAlignment="Left" Margin="214,141,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
                     <Label Content="Oszlop" Foreground="White" HorizontalAlignment="Left" Margin="214,191,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox Style="{StaticResource RoundedTextboxTemplate}" HorizontalAlignment="Left" x:Name="assetPriceTextBox_Copy" Margin="217,221,0,0" TextWrapping="Wrap" Width="150" Height="25" VerticalAlignment="Top" />
+                    <TextBox HorizontalAlignment="Left" x:Name="assetPriceTextBox_Copy" Margin="217,221,0,0" TextWrapping="Wrap" Width="150" Height="25" VerticalAlignment="Top">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
                     <Label Content="Szint" Foreground="White" HorizontalAlignment="Left" Margin="214,245,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox Style="{StaticResource RoundedTextboxTemplate}" HorizontalAlignment="Left" Margin="217,275,0,0" x:Name="assetMaxTextBox_Copy" TextWrapping="Wrap" Width="150" Height="25" VerticalAlignment="Top" />
-                    <ComboBox x:Name="ProductComboBox_Copy" HorizontalAlignment="Left" Margin="222,113,0,0" VerticalAlignment="Top" Width="150" Height="25"/>
-                    <Label Content="Product" Foreground="White" HorizontalAlignment="Left" Margin="262,77,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <TextBox HorizontalAlignment="Left" Margin="217,275,0,0" x:Name="assetMaxTextBox_Copy" TextWrapping="Wrap" Width="150" Height="25" VerticalAlignment="Top">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
+                    <ComboBox x:Name="ProductComboBox_Copy" HorizontalAlignment="Left" Margin="217,115,0,0" VerticalAlignment="Top" Width="150" Height="25"/>
+                    <Label Content="Product" Foreground="White" HorizontalAlignment="Left" Margin="260,77,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Button Style="{StaticResource RoundeButtonTemplate}" Content="Add new asset" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top" Width="220" Height="25" FontSize="16" FontWeight="Bold" Click="addItem" />
                 </Grid>
             </TabItem>
             <TabItem Header="Customize assets">
@@ -54,10 +94,22 @@
                     </Grid.ColumnDefinitions>
                     <ComboBox Name="ProductComboBox" HorizontalAlignment="Left" Margin="131,89,0,0" VerticalAlignment="Top" Width="150" Height="25" Grid.Column="1"/>
                     <Label Content="Product" Foreground="White" HorizontalAlignment="Left" Margin="171,53,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-                    <TextBox Style="{StaticResource RoundedTextboxTemplate}" Name="NewPriceTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" Grid.Column="1" Margin="131,156,0,0"/>
+                    <TextBox Name="NewPriceTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" Grid.Column="1" Margin="131,156,0,0">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                     <Label Content="New price" Foreground="White" HorizontalAlignment="Left" Margin="163,119,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.576,1.706" Grid.Column="1"/>
                     <Button Style="{StaticResource RoundeButtonTemplate}" Content="Change asset detail" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="120,284,0,0" FontWeight="Bold" Grid.Column="1" Click="changePrice_Quantity_Btn" Width="171"/>
-                    <TextBox Style="{StaticResource RoundedTextboxTemplate}" x:Name="NewPriceTextBox_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" Grid.Column="1" Margin="130,234,0,0"/>
+                    <TextBox x:Name="NewPriceTextBox_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" Grid.Column="1" Margin="130,234,0,0">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                     <Label Content="New maximum quantity" Foreground="White" HorizontalAlignment="Left" Margin="110,198,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.576,1.706" Grid.Column="1"/>
                 </Grid>
             </TabItem>
