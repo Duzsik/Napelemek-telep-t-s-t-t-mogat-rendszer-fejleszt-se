@@ -8,20 +8,20 @@
         ResizeMode="NoResize"
         Title="admin" Height="400" Width="450">
     <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TextBox Name="nameTextBox" HorizontalAlignment="Center" Margin="0,110,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20"/>
-        <TextBox Name="userNameTextBox" HorizontalAlignment="Center" Margin="0,170,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20"/>
+        <TextBox Style="{StaticResource RoundedTextboxTemplate}" Name="nameTextBox" HorizontalAlignment="Center" Margin="0,110,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20"/>
+        <TextBox Style="{StaticResource RoundedTextboxTemplate}" Name="userNameTextBox" HorizontalAlignment="Center" Margin="0,170,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20"/>
         <ComboBox Name="roleComboBox" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Width="150" Height="20">
             <ComboBoxItem Content="warehouse manager"/>
             <ComboBoxItem Content="warehouse worker"/>
             <ComboBoxItem Content="professional"/>
         </ComboBox>
-        <PasswordBox Name="passTextBox" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20" InputScope="Default"/>
-        <Button Name="addBtn" Content="Add" HorizontalAlignment="Center" Margin="0,315,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="100" Height="20" Click="addBtn_Click"/>
+        <PasswordBox Style="{StaticResource RoundedPasswordboxTemplate}" Name="passTextBox" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20" InputScope="Default"/>
+        <Button Style="{StaticResource RoundeButtonTemplate}" Name="addBtn" Content="Add" HorizontalAlignment="Center" Margin="0,315,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="100" Height="20" Click="addBtn_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="147,85,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
         <TextBlock HorizontalAlignment="Left" Margin="147,200,0,0" TextWrapping="Wrap" Text="Role:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
         <TextBlock HorizontalAlignment="Left" Margin="147,249,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
         <TextBlock HorizontalAlignment="Left" Margin="147,145,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
-        <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Margin="10,0,0,20" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Width="60" Height="25" Click="backBtn_Click" FontSize="16" FontWeight="Bold"/>
+        <Button Style="{StaticResource RoundeButtonTemplate}" x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Margin="10,0,0,20" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Width="60" Height="25" Click="backBtn_Click" FontSize="16" FontWeight="Bold"/>
         <Label Content="Registrate new worker" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="28" FontFamily="Haettenschweiler"/>
     </Grid>
 </Window>
