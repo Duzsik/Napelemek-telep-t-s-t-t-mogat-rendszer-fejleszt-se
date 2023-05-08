@@ -10,7 +10,7 @@
         <TabControl>
             <TabItem Header="Projects">
                 <Grid Background="#FF1B1919">
-                    <Label Content="Projects" HorizontalAlignment="Left" Margin="5,-1,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <Label Content="Projects" HorizontalAlignment="Left" Margin="705,-7,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <TextBox Style="{StaticResource RoundedTextboxTemplate}" HorizontalAlignment="Left" Margin="40,35,0,0" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Top" Width="120" Height="20" FontSize="16"  />
                     <TextBox Style="{StaticResource RoundedTextboxTemplate}" HorizontalAlignment="Left" Margin="199,36,0,0" TextWrapping="Wrap" Text="Project status" VerticalAlignment="Top" Width="120" Height="20"/>
                     <Button Style="{StaticResource RoundeButtonTemplate}" Content="Filter project" HorizontalAlignment="Left" Margin="349,36,0,0" VerticalAlignment="Top" Width="120" Height="20"/>
@@ -22,6 +22,8 @@
                     <TextBox HorizontalAlignment="Left" Margin="418,353,0,0" TextWrapping="Wrap" Text="Project status" VerticalAlignment="Top" Width="120"/>
                     <Button Style="{StaticResource RoundeButtonTemplate}" Content="Change status" HorizontalAlignment="Left" Margin="573,352,0,0" VerticalAlignment="Top" Width="110" Height="20"/>
                     <Button Style="{StaticResource RoundeButtonTemplate}" Content="Exit" HorizontalAlignment="Left" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="51" FontSize="16" FontWeight="Bold" Click="Project_exitBtn"/>
+                    <Label Content="Name" HorizontalAlignment="Left" Margin="44,11,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <Label Content="Status" HorizontalAlignment="Left" Margin="203,11,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Project management">

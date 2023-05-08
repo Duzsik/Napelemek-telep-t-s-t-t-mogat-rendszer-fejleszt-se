@@ -34,7 +34,8 @@ namespace Napelem
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-        }
+        } 
+        
 
         private void mainExitBtn_Click(object sender, RoutedEventArgs e)
         {
