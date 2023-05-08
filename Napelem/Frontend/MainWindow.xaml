@@ -33,7 +33,7 @@
             Height="27" Width="162" 
             Click="Button_Click" 
             Foreground="Black"
-            Background="White" Grid.ColumnSpan="2"/>
+            Background="Orange" Grid.ColumnSpan="2"/>
         <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Left" Margin="44,33,0,0" TextWrapping="Wrap" Text="ALL IN ENERGY" VerticalAlignment="Top" IsEnabled="False" FontSize="72" FontStyle="Normal" FontWeight="Normal" FontFamily="Haettenschweiler"  Foreground="White" Grid.ColumnSpan="2"/>
         <PasswordBox Name="passwordBox" HorizontalAlignment="Left" Margin="119,216,0,0" VerticalAlignment="Top" Width="162" Height="22" Grid.ColumnSpan="2">
             <PasswordBox.Style>

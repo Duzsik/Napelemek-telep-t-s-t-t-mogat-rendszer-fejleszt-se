@@ -4,19 +4,26 @@
              xmlns:local="clr-namespace:Napelem"
              StartupUri="Frontend/MainWindow.xaml">
     <Application.Resources>
+        
+        <!--BUTTON -->
         <Style x:Key="RoundeButtonTemplate" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="10" Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
-
                             </ContentPresenter>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!--<Style TargetType="Button">
+            <Setter Property="Background" Value="Black"/>
+        </Style>-->
+
+        <!--TEXTBOX -->
         <Style x:Key="RoundedTextboxTemplate" TargetType="TextBox">
             <Setter Property="Template">
                 <Setter.Value>
@@ -30,6 +37,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <!--PASSWORDBOX -->
         <Style x:Key="RoundedPasswordboxTemplate" TargetType="PasswordBox">
             <Setter Property="Template">
                 <Setter.Value>
@@ -55,6 +64,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <!--COMBOBOX -->
         <Style x:Key="RoundedComboboxTemplate" TargetType="ComboBox">
             <Setter Property="Template">
                 <Setter.Value>
