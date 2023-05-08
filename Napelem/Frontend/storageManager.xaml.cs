@@ -27,16 +27,13 @@ namespace Napelem
             this.Close();
             objmainWindow.Show();
         }
-        public Connection.TCPConnection TCP;
         public storageManager()
         {
             InitializeComponent();
-            TCP = new Connection.TCPConnection();
             Closing += Window_Closing;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            TCP.TCPCloseConnection();
         }
 
         private void mainExitBtn_Click(object sender, RoutedEventArgs e)
@@ -46,13 +43,15 @@ namespace Napelem
 
         private void addItem(object sender, RoutedEventArgs e)
         {
-            TCP.TCPSendMessage("Add item");
         }
 
         private void changePrice_Quantity_Btn(object sender, RoutedEventArgs e)
         {
-            TCP.TCPSendMessage("Change price");            
         }
 
+        private void NewPriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

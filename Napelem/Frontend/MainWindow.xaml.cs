@@ -12,7 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Napelem.Connection;
+using Napelem.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Net.Http;
+using Newtonsoft.Json;
+
 
 
 namespace Napelem
@@ -23,16 +27,10 @@ namespace Napelem
     
     public partial class MainWindow : Window
     {
-        public Connection.TCPConnection TCP;
         public MainWindow()
         {
             InitializeComponent();
-            TCP = new Connection.TCPConnection();
-            Closing += Window_Closing;
-        }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            TCP.TCPCloseConnection();
+    
         }
 
         private void ShowPass_Checked(object sender, RoutedEventArgs e)
@@ -50,11 +48,61 @@ namespace Napelem
         }
 
         //Login button
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            TCP.TCPSendMessage("Login");
-        }
+            Employee emp = new Employee();
+            emp.username = userTextBox.Text;
+            emp.password = passwordBox.Password;
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+            try
+            {
+                var response = await client.GetAsync($"api/Employee?username={emp.username}&password={emp.password}");
+                response.EnsureSuccessStatusCode();
+                var responseBody = await response.Content.ReadAsStringAsync();
+                var employee = JsonConvert.DeserializeObject<Employee>(responseBody);
+                if (employee == null)
+                {
+                    MessageBox.Show("Username or password is incorrect");
+                }
+                else
+                {
+                    if (employee.role == "admin")
+                    {
+                        admin adminWindow = new admin();
+                        this.Close();
+                        adminWindow.Show();
 
+                    }
+                    if (employee.role == "warehouseManager")
+                    {
+                        storageManager raktarVezetoWindow = new storageManager();
+                        this.Close();
+                        raktarVezetoWindow.Show();
+                    }
+                    if (employee.role == "professional")
+                    {
+                        professional prof = new professional();
+                        this.Close();
+                        prof.Show();
+                    }
+                    if (employee.role == "warehouseWorker")
+                    {
+                        stockKeeper store = new stockKeeper();
+                        this.Close();
+                        store.Show();
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
+
+        }
         private void Grid_ContextMenuClosing(object sender, RoutedEventArgs e)
         {
 
