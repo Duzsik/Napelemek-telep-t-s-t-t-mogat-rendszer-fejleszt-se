@@ -54,7 +54,7 @@ namespace Napelem
             emp.username = userTextBox.Text;
             emp.password = passwordBox.Password;
             using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:7186/");
+            client.BaseAddress = new Uri("https://localhost:5001/");
             try
             {
                 var response = await client.GetAsync($"api/Employee?username={emp.username}&password={emp.password}");
