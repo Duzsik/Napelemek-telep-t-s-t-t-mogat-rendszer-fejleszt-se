@@ -9,11 +9,11 @@ namespace Napelem.Models
 {
     public class Storage
     {
+        [Key]
         public int storageID { get; set; }
         public int componentID { get; set; }
         public int row { get; set; }
         public int column { get; set; }
         public int level { get; set; }
-        public string? objectType { get; set; }
     }
 }
