@@ -5,53 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Napelem"
         mc:Ignorable="d"
-        Title="Stock Keeper" Height="450" Width="800">
-    <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TabControl>
-            <TabItem Header="Projects">
-                <Grid Background="#FF1B1919">
-                    <Label Content="Warhouse worker page" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                    <Button Style="{StaticResource RoundeButtonTemplate}" Content="Exit" HorizontalAlignment="Left" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="51" FontSize="16" FontWeight="Bold"/>
-                    <Label Content="Project" HorizontalAlignment="Left" Margin="521,19,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="605,26,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="Assets and position" HorizontalAlignment="Left" Margin="45,86,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" />
-                    <Grid Width="750" Height="290" >
-                        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" />
+        Title="Stock Keeper" Height="450" Width="800"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Background="#FF1B1919" BorderThickness="1" CornerRadius="30">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabControl Background="#FF1B1919" BorderBrush="#FF1B1919">
+                <TabItem Header="Projects" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
+                    <Grid Background="#FF1B1919">
+                        <Label Content="Warhouse worker page" HorizontalAlignment="Left" Margin="13,7,0,0" VerticalAlignment="Top" Foreground="Orange" FontSize="20" FontWeight="Bold"/>
+                        <Button Style="{StaticResource ExitButtonTemplate}" Content="Back" Width="51" FontSize="16" FontWeight="Bold"/>
+                        <Label Content="Project" HorizontalAlignment="Left" Margin="521,19,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="605,26,0,0" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Assets and position" HorizontalAlignment="Left" Margin="45,86,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" />
+                        <Grid Width="750" Height="290" >
+                            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" />
+                        </Grid>
                     </Grid>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Assett output">
-                <Grid Background="#FF1B1919">
-                    <Label Content="Asset output page" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                    <Label Content="Project" HorizontalAlignment="Left" Margin="521,19,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="605,26,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="Choose asset" HorizontalAlignment="Left" Margin="23,84,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="142,91,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="Add quantity" HorizontalAlignment="Left" Margin="24,125,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                    <TextBox HorizontalAlignment="Left" Margin="144,133,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="118">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="5"/>
-                            </Style>
-                        </TextBox.Resources>
+                </TabItem>
+                <TabItem Header="Assett output" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
+                    <Grid Background="#FF1B1919">
+                        <Label Content="Asset output page" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top" Foreground="Orange" FontSize="20" FontWeight="Bold"/>
+                        <Label Content="Project" HorizontalAlignment="Left" Margin="521,19,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="605,26,0,0" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Choose asset" HorizontalAlignment="Left" Margin="23,84,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="142,91,0,0" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Add quantity" HorizontalAlignment="Left" Margin="24,125,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                        <TextBox HorizontalAlignment="Left" Margin="144,133,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="118">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </TextBox.Resources>
 
-                    </TextBox>
-                    <Button Style="{StaticResource RoundeButtonTemplate}" 
-                            Content="Take out asset" 
-                            HorizontalAlignment="Left"
-                            Margin="64,171,0,0" 
-                            VerticalAlignment="Top" 
-                            Width="135" Height="20"
-                            FontWeight="Bold"
-                            Foreground="Black"
-                            Background="Orange"/>
-                    <Label Content="Best available route:" HorizontalAlignment="Left" Margin="50,353,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" />
-                    <Grid Height="260" Width="400" Margin="323,76,71,70">
-                        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                        </TextBox>
+                        <Button Style="{StaticResource RoundeButtonTemplate}" 
+                                Content="Take out asset" 
+                                HorizontalAlignment="Left"
+                                Margin="64,171,0,0" 
+                                VerticalAlignment="Top" 
+                                Width="135" Height="20"
+                                FontWeight="Bold"
+                                Foreground="Black"
+                                Background="Orange"/>
+                        <Label Content="Best available route:" HorizontalAlignment="Left" Margin="50,353,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" />
+                        <Grid Height="260" Width="400" Margin="323,76,71,70">
+                            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                        </Grid>
                     </Grid>
-                </Grid>
-
-            </TabItem>
-        </TabControl>
-    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Border>
 </Window>

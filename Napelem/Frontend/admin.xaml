@@ -6,16 +6,20 @@
         xmlns:local="clr-namespace:Napelem"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="admin" Height="400" Width="450">
-    <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TextBox Name="nameTextBox" HorizontalAlignment="Center" Margin="0,97,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20">
+        Title="admin" Height="400" Width="450"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Background="#FF1B1919" BorderThickness="1" CornerRadius="30">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBox Name="nameTextBox" HorizontalAlignment="Center" Margin="0,97,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20">
             <TextBox.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox Name="userNameTextBox" HorizontalAlignment="Center" Margin="0,157,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20">
+            <TextBox Name="userNameTextBox" HorizontalAlignment="Center" Margin="0,157,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20">
             <TextBox.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -27,7 +31,7 @@
             <ComboBoxItem Content="warehouse worker"/>
             <ComboBoxItem Content="professional"/>
         </ComboBox>
-        <PasswordBox Name="passTextBox" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20" InputScope="Default">
+            <PasswordBox Name="passTextBox" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="20" InputScope="Default">
             <PasswordBox.Style>
                 <Style TargetType="{x:Type PasswordBox}">
                     <Style.Resources>
@@ -84,17 +88,15 @@
         <TextBlock HorizontalAlignment="Left" Margin="147,188,0,0" TextWrapping="Wrap" Text="Role:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
         <TextBlock HorizontalAlignment="Left" Margin="147,236,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
         <TextBlock HorizontalAlignment="Left" Margin="147,132,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
-        <Button Style="{StaticResource RoundeButtonTemplate}"
+        <Button Style="{StaticResource ExitButtonTemplate}"
                 x:Name="backBtn" 
                 Content="Back" 
-                HorizontalAlignment="Left" 
-                Margin="10,0,0,20" 
                 VerticalContentAlignment="Center" 
-                VerticalAlignment="Bottom" 
                 Width="60" Height="25" 
                 Click="backBtn_Click" 
                 FontSize="16" FontWeight="Bold"
                 Foreground="Black"/>
-        <Label Content="Register new worker" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="28" FontFamily="Haettenschweiler"/>
+        <Label Content="Register new worker" HorizontalAlignment="Left" Margin="6,2,0,0" VerticalAlignment="Top" Foreground="Orange" FontSize="28" FontFamily="Haettenschweiler"/>
     </Grid>
+    </Border>
 </Window>

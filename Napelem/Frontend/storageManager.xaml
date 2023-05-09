@@ -5,28 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Napelem"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Storage Manager" Height="450" Width="600">
+        Title="Storage Manager" Height="450" Width="600"
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True">
     <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TabItem Header="Main table">
+        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF1B1919" Background="#FF1B1919">
+            <TabItem Header="Main table" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
                 <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Label Content="Warehouse manager main" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                    <Button Style="{StaticResource RoundeButtonTemplate}" Name="mainExitBtn" Content="Exit" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" RenderTransformOrigin="-0.089,1.096" Height="25" Width="60" FontSize="16" FontWeight="Bold" Click="mainExitBtn_Click"/>
-                    <Label Content="Assets with low quantity:" HorizontalAlignment="Left" Margin="228,15,0,0" VerticalAlignment="Top" Foreground="White"/>
-                    <Label Content="Missing but needed assets:" HorizontalAlignment="Left" Margin="396,17,0,0" VerticalAlignment="Top" Foreground="White"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="368,22,0,0" VerticalAlignment="Top"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="549,24,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Warehouse manager main" HorizontalAlignment="Left" Margin="3,-5,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Orange"/>
+                    <Button Style="{StaticResource ExitButtonTemplate}" Name="mainExitBtn" Content="Back" Height="25" Width="60" FontSize="16" FontWeight="Bold" Click="mainExitBtn_Click"/>
+                    <Label Content="Assets with low quantity:" HorizontalAlignment="Left" Margin="243,22,0,0" VerticalAlignment="Top" Foreground="White"/>
+                    <Label Content="Missing but needed assets:" HorizontalAlignment="Left" Margin="413,24,0,0" VerticalAlignment="Top" Foreground="White"/>
+                    <CheckBox HorizontalAlignment="Left" Margin="385,29,0,0" VerticalAlignment="Top"/>
+                    <CheckBox HorizontalAlignment="Left" Margin="566,31,0,0" VerticalAlignment="Top"/>
                     <Grid Width="580" Height="300">
                         <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="New assets">
+            <TabItem Header="New assets" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
                 <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Label Content="New assets" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
-                    <TextBox Name="assetNameTextBox" Margin="219,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="25" HorizontalAlignment="Left">
+                    <Label Content="New assets" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Orange"/>
+                    <TextBox Name="assetNameTextBox" Margin="219,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Height="25" HorizontalAlignment="Left">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -36,7 +38,7 @@
                     </TextBox>
                     <Label Content="Name" Foreground="White" HorizontalAlignment="Left" Margin="219,80,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
                     <Label Content="Price" Foreground="White" HorizontalAlignment="Left" Margin="220,133,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox Name="assetPriceTextBox" Margin="222,163,222,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25">
+                    <TextBox Name="assetPriceTextBox" Margin="222,163,222,0" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="25">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -44,7 +46,7 @@
                         </TextBox.Resources>
                     </TextBox>
                     <Label Content="Max quantity" Foreground="White" HorizontalAlignment="Left" Margin="220,186,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox Margin="222,220,222,0" Name="assetMaxTextBox" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" Height="25">
+                    <TextBox Margin="222,220,222,0" Name="assetMaxTextBox" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="25">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -63,10 +65,10 @@
                             Background="Orange"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Intake">
-                <Grid Background="#FF1B1919">
-                    <Label Content="Intake" HorizontalAlignment="Left" Margin="12,6,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
-                    <TextBox x:Name="assetNameTextBox_Copy" HorizontalAlignment="Left" Margin="216,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="25">
+            <TabItem Header="Intake" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
+                <Grid Background="#FF1B1919" >
+                    <Label Content="Intake" HorizontalAlignment="Left" Margin="12,6,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Orange"/>
+                    <TextBox x:Name="assetNameTextBox_Copy" HorizontalAlignment="Left" Margin="216,169,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" Height="25">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -75,7 +77,7 @@
                     </TextBox>
                     <Label Content="Sor" Foreground="White" HorizontalAlignment="Left" Margin="214,141,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
                     <Label Content="Oszlop" Foreground="White" HorizontalAlignment="Left" Margin="214,191,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox HorizontalAlignment="Left" x:Name="assetPriceTextBox_Copy" Margin="217,221,0,0" TextWrapping="Wrap" Width="150" Height="25" VerticalAlignment="Top">
+                    <TextBox HorizontalAlignment="Left" x:Name="assetPriceTextBox_Copy" Margin="217,221,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Height="25" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -84,7 +86,7 @@
 
                     </TextBox>
                     <Label Content="Szint" Foreground="White" HorizontalAlignment="Left" Margin="214,245,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox HorizontalAlignment="Left" Margin="217,275,0,0" x:Name="assetMaxTextBox_Copy" TextWrapping="Wrap" Width="150" Height="25" VerticalAlignment="Top">
+                    <TextBox HorizontalAlignment="Left" Margin="217,275,0,0" x:Name="assetMaxTextBox_Copy" TextWrapping="Wrap" VerticalContentAlignment="Center" Width="150" Height="25" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -107,13 +109,13 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Customize assets">
+            <TabItem Header="Customize assets" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
                 <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Label Content="New assets" HorizontalAlignment="Left" Margin="7,5,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                    <Label Content="Customize assets" HorizontalAlignment="Left" Margin="7,5,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Orange"/>
 
                     <ComboBox Name="ProductComboBox" HorizontalAlignment="Left" Margin="218,109,0,0" VerticalAlignment="Top" Width="150" Height="25"/>
                     <Label Content="Product" Foreground="White" HorizontalAlignment="Left" Margin="258,73,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                    <TextBox Name="NewPriceTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" Margin="218,176,0,0">
+                    <TextBox Name="NewPriceTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="" VerticalAlignment="Top" Width="150" Height="25" Margin="218,176,0,0">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -132,7 +134,7 @@
                             Width="171" Height="26"
                             Foreground="Black"
                             Background="Orange" />
-                    <TextBox x:Name="NewPriceTextBox_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="25" Margin="217,254,0,0">
+                    <TextBox x:Name="NewPriceTextBox_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="" VerticalAlignment="Top" Width="150" Height="25" Margin="217,254,0,0">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>

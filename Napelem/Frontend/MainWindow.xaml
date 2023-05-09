@@ -6,74 +6,81 @@
         xmlns:local="clr-namespace:Napelem"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="Login" Height="350" Width="400">
-
-    <Grid Background="#FF1B1919" Margin="0,0,0,-6" Width="400" ContextMenuClosing="Grid_ContextMenuClosing">
-        <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Left" Margin="44,33,0,0" TextWrapping="Wrap" Text="ALL IN ENERGY" VerticalAlignment="Top" IsEnabled="False" FontSize="72" FontStyle="Normal" FontWeight="Normal" FontFamily="Haettenschweiler"  Foreground="White" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="userTextBox" HorizontalAlignment="Left" Margin="119,163,0,0" VerticalAlignment="Top" Width="162" Visibility="Visible" Height="22" Text="" Grid.ColumnSpan="2">
-            <TextBox.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </TextBox.Resources>
-        </TextBox>
-        <TextBlock x:Name="UserLabel" HorizontalAlignment="Left" Margin="160,137,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" RenderTransformOrigin="-0.122,-0.06" Foreground="White" FontSize="16" FontWeight="Bold"/>
-        <TextBlock x:Name="PassLabel" HorizontalAlignment="Left" Margin="162,190,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" RenderTransformOrigin="-0.122,-0.06" Foreground="White" FontSize="16" FontWeight="Bold"/>
-        <PasswordBox Name="passwordBox" HorizontalAlignment="Left" Margin="119,216,0,0" VerticalAlignment="Top" Width="162" Height="22" Grid.ColumnSpan="2">
-            <PasswordBox.Style>
-                <Style TargetType="{x:Type PasswordBox}">
-                    <Style.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="8" />
-                        </Style>
-                    </Style.Resources>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type PasswordBox}">
-                                <Border x:Name="border" CornerRadius="8" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsEnabled" Value="false">
-                                        <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                                    </Trigger>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
-                                    </Trigger>
-                                    <Trigger Property="IsKeyboardFocused" Value="true">
-                                        <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                                <Condition Property="IsSelectionActive" Value="false"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                        </MultiTrigger>
-                    </Style.Triggers>
-                </Style>
-            </PasswordBox.Style>
-        </PasswordBox>
-        <TextBox Name="passwordTxtBox" HorizontalAlignment="Left" Margin="119,216,0,0" VerticalAlignment="Top" Width="162" Height="22" Visibility="Collapsed" Grid.ColumnSpan="2"/>
-        <CheckBox Name="ShowPass" HorizontalAlignment="Left" Margin="288,220,0,0" VerticalAlignment="Top" Checked="ShowPass_Checked" Unchecked="ShowPass_Unchecked" />
-        <Button 
-            Style="{StaticResource RoundeButtonTemplate}"
-            Name="Loginbtn"
-            Content="Login"
-            HorizontalAlignment="Left" 
-            Margin="119,253,0,0" 
-            VerticalAlignment="Top"
-            RenderTransformOrigin="0.222,-1.2" 
-            Height="27" Width="162" 
-            Click="Button_Click" 
-            Foreground="Black"
-            Background="Orange"/>
-    </Grid>
-
-
+        Title="Login" Height="350" Width="400" WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Background="#FF1B1919" BorderThickness="1" CornerRadius="30">
+        <Grid Width="400" ContextMenuClosing="Grid_ContextMenuClosing">
+            <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Left" Margin="44,33,0,0" TextWrapping="Wrap" Text="ALL IN ENERGY" VerticalAlignment="Top" IsEnabled="False" FontSize="72" FontStyle="Normal" FontWeight="Normal" FontFamily="Haettenschweiler"  Foreground="Orange" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="userTextBox" HorizontalAlignment="Left" Margin="119,163,0,0" VerticalAlignment="Top" Width="162" Visibility="Visible" Height="22" Text="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <TextBlock x:Name="UserLabel" HorizontalAlignment="Left" Margin="160,137,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" RenderTransformOrigin="-0.122,-0.06" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            <TextBlock x:Name="PassLabel" HorizontalAlignment="Left" Margin="162,190,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" RenderTransformOrigin="-0.122,-0.06" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            <PasswordBox Name="passwordBox" HorizontalAlignment="Left" Margin="119,216,0,0" VerticalAlignment="Top" Width="162" Height="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <PasswordBox.Style>
+                    <Style TargetType="{x:Type PasswordBox}">
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8" />
+                            </Style>
+                        </Style.Resources>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                    <Border x:Name="border" CornerRadius="8" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="true">
+                                            <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                                    <Condition Property="IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </PasswordBox.Style>
+            </PasswordBox>
+            <TextBox Name="passwordTxtBox" HorizontalAlignment="Left" Margin="119,216,0,0" VerticalAlignment="Top" Width="162" Height="22" Visibility="Collapsed" Grid.ColumnSpan="2"/>
+            <CheckBox Name="ShowPass" HorizontalAlignment="Left" Margin="288,220,0,0" VerticalAlignment="Top" Checked="ShowPass_Checked" Unchecked="ShowPass_Unchecked" />
+            <Button 
+                Style="{StaticResource RoundeButtonTemplate}"
+                Name="Loginbtn"
+                Content="Login"
+                HorizontalAlignment="Left" 
+                Margin="119,253,0,0" 
+                VerticalAlignment="Top"
+                RenderTransformOrigin="0.222,-1.2" 
+                Height="27" Width="162" 
+                FontWeight="Bold"
+                Click="Button_Click" 
+                Foreground="Black"/>
+            <Button
+               Style = "{StaticResource ExitButtonTemplate}"
+               x:Name="closeApplicationBtn"
+               FontWeight="Bold"
+               Content="Close"
+                />
+        </Grid>
+    </Border>
 </Window>
