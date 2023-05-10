@@ -115,7 +115,7 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    <Button Style="{StaticResource RoundeButtonTemplate}" Content="Add asset to the project" HorizontalAlignment="Left" Margin="411,198,0,0" VerticalAlignment="Top" Height="32" Width="160"/>
+                    <Button Style="{StaticResource RoundeButtonTemplate}" Content="Add asset to the project" HorizontalAlignment="Left" Margin="411,198,0,0" VerticalAlignment="Top" Height="32" Width="160" Click="addAssetsToProjectBtn" />
                     <Label Content="Assets" HorizontalAlignment="Left" Margin="147,312,0,0" VerticalAlignment="Top" Foreground="White"/>
                 </Grid>
             </TabItem>

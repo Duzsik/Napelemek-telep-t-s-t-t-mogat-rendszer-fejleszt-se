@@ -24,9 +24,9 @@ namespace Napelem
 
     public class ProjectComponent
     {
-        public Project Project { get; set; }
-        public Component Component { get; set; }
-    }
+        public Project project { get; set; }
+        public Component component { get; set; }
+    }   
     public partial class professional : Window
     {
         void exit()
@@ -38,6 +38,8 @@ namespace Napelem
         public professional()
         {
             InitializeComponent();
+            LoadCompontents();
+            LoadProjects();
         }
         public async void LoadCompontents()
         {
@@ -91,9 +93,30 @@ namespace Napelem
             
         }
 
-        private void addAssetsToProjectBtn(object sender, RoutedEventArgs e)
+        private async void addAssetsToProjectBtn(object sender, RoutedEventArgs e)
         {
-           
+
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+
+            Project pro = new Project();
+            string[] proData = ProjectIdComboBox.Text.Split(' ');
+            pro.projectID = int.Parse(proData[0]);
+
+            Component comp = new Component();
+            string[] compData = assetSelectComboBox.Text.Split(' ');
+            comp.componentID = int.Parse(compData[0]);
+
+            ProjectComponent projectComp = new ProjectComponent();
+            projectComp.component = comp;
+            projectComp.project = pro;
+
+            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp), System.Text.Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"api/Reservation/AddReservation", content);
+            if (response.IsSuccessStatusCode == true)
+            {
+                MessageBox.Show("Intake was successful.");
+            }
         }
     }
 }
