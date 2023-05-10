@@ -99,13 +99,13 @@
                     <Label Content="Product" Foreground="White" HorizontalAlignment="Left" Margin="213,84,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <Button Style="{StaticResource RoundeButtonTemplate}"
                             x:Name="intakeBtn"
-                            Content="Add new asset"
+                            Content="Set storage"
                             HorizontalAlignment="Center"
                             Margin="0,328,0,0"
                             VerticalAlignment="Top"
                             Width="220" Height="25"
                             FontSize="16" FontWeight="Bold"
-                            Click="addItem"
+                            Click="SetStorageClick"
                             Foreground="Black"
                             Background="Orange"/>
 

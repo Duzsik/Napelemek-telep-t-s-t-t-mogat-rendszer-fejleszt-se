@@ -3597,23 +3597,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\RAYKO\\.nuget\\packages\\": {},
+    "C:\\Users\\Gergo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RAYKO\\Documents\\GitHub\\Master\\Napelem\\Napelem.csproj",
+      "projectUniqueName": "D:\\Egyetem\\rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\Napelem.csproj",
       "projectName": "Napelem",
-      "projectPath": "C:\\Users\\RAYKO\\Documents\\GitHub\\Master\\Napelem\\Napelem.csproj",
-      "packagesPath": "C:\\Users\\RAYKO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RAYKO\\Documents\\GitHub\\Master\\Napelem\\obj\\",
+      "projectPath": "D:\\Egyetem\\rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\Napelem.csproj",
+      "packagesPath": "C:\\Users\\Gergo\\.nuget\\packages\\",
+      "outputPath": "D:\\Egyetem\\rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\RAYKO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gergo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3684,7 +3684,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

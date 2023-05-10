@@ -77,6 +77,7 @@ namespace Napelem
                 var projects = JsonConvert.DeserializeObject<List<Project>>(projectsJson);
                 for (int i = 0; i < projects.Count; i++)
                 {
+                   
                     ProjectIdComboBox.Items.Add(projects[i].projectID + " " + projects[i].name);
                 }
             }
@@ -129,14 +130,15 @@ namespace Napelem
             client.BaseAddress = new Uri("https://localhost:7186/");          
             Project addPro = new Project();
             addPro.name = projectNameTextBox.Text;
-            addPro.project_price = int.Parse(workPriceTextBox.Text);
             addPro.estimated_Time = int.Parse(workTimeTextBox.Text);
             addPro.project_description = descriptionTextBox.Text;
             addPro.project_location = projectLocationTextBox.Text;
             addPro.project_orderer = CostumerNameTextBox.Text;
             addPro.wage = 2000;
+            addPro.project_price = addPro.estimated_Time*addPro.wage;
             addPro.status = "New";
             addPro.employeeID = emp.employeeID;
+            workPriceTextBox.Text=addPro.project_price.ToString();
             var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(addPro), System.Text.Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"api/Project/AddProject", content);
             if (response.IsSuccessStatusCode == true)

@@ -76,7 +76,7 @@ namespace Napelem
                         adminWindow.Show();
 
                     }
-                    if (employee.role == "warehouseManager")
+                    if (employee.role == "warehouse manager")
                     {
                         storageManager raktarVezetoWindow = new storageManager();
                         this.Close();
@@ -89,7 +89,7 @@ namespace Napelem
                         this.Close();
                         prof.Show();
                     }
-                    if (employee.role == "warehouseWorker")
+                    if (employee.role == "warehouse worker")
                     {
                         stockKeeper store = new stockKeeper();
                         this.Close();

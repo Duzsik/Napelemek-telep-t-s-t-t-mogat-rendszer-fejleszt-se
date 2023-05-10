@@ -126,7 +126,7 @@
                                 Width="112" Height="21"
                                 FontWeight="Bold"
                                 Foreground="Black"
-                                Background="Orange"/>
+                                Background="Orange" Click="AddNewProjectBtn"/>
                         <TextBox Name="projectLocationTextBox" HorizontalAlignment="Left" Margin="34,0,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Location" VerticalAlignment="Center" Width="120">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
@@ -135,7 +135,7 @@
                             </TextBox.Resources>
 
                         </TextBox>
-                        <TextBox Name="workPriceTextBox" HorizontalAlignment="Left" Margin="164,173,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Estimated work price" VerticalAlignment="Top" Width="120">
+                        <TextBox Name="workPriceTextBox" IsReadOnly="True" HorizontalAlignment="Left" Margin="164,173,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Estimated work price" VerticalAlignment="Top" Width="120">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>
@@ -165,7 +165,7 @@
                                 Height="32" Width="160"
                                 FontWeight="Bold"
                                 Foreground="Black"
-                                Background="Orange"/>
+                                Background="Orange" Click="addAssetsToProjectBtn"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Assets" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919" >
