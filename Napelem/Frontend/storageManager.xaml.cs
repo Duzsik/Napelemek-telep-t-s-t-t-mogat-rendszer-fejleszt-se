@@ -37,8 +37,9 @@ namespace Napelem
             this.Close();
             objmainWindow.Show();
         }
-        public async void Load()
+        public async void LoadComponent()
         {
+
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
 
@@ -49,18 +50,35 @@ namespace Napelem
                 var obj = JsonConvert.DeserializeObject<JObject>(json);
                 var componentsJson = obj["value"].ToString();
                 var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
-                for (int i = 0; i < components.Count; i++)
+                for(int i = 0; i<components.Count; i++)
                 {
-                    ProductComboBox.Items.Add(components[i].componentID +" "+ components[i].name);
-                    ProductComboBox_Copy.Items.Add(components[i].componentID +" "+ components[i].name);
-                   
+                    IntakeProductComboBox.Items.Add(components[i].componentID + " " + components[i].name);
+                    ProductComboBox.Items.Add(components[i].componentID + " " + components[i].name);
+                    
                 }
+                warehouseGrid.ItemsSource = components;
+                
+            }
+        }
+        public async void LoadReservation()
+        {
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+
+            var response = await client.GetAsync($"api/Reservation/ListReservation");
+            if (response.IsSuccessStatusCode == true)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<JObject>(json);
+                var reservationJson = obj["value"].ToString();
+                var reservations = JsonConvert.DeserializeObject<List<Component>>(reservationJson);     
+                warehouseGrid.ItemsSource = reservations;
             }
         }
         public storageManager()
         {
             InitializeComponent();
-            Load();
+            LoadComponent();
             Closing += Window_Closing;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -150,7 +168,7 @@ namespace Napelem
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
             Component comp = new Component();
-            string[] compData = ProductComboBox_Copy.Text.Split(' ');
+            string[] compData = IntakeProductComboBox.Text.Split(' ');
             comp.componentID = int.Parse(compData[0]);
 
             var response = await client.GetAsync($"api/Component/SendComponent");
@@ -192,6 +210,93 @@ namespace Napelem
             }
 
             
+        }
+
+        private async void lowQuantity(object sender, RoutedEventArgs e)
+        {
+            List<Component> filteredComponents = new List<Component>();
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+
+            var response = await client.GetAsync($"api/Component/SendComponent");
+            if (response.IsSuccessStatusCode == true)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<JObject>(json);
+                var componentsJson = obj["value"].ToString();
+                var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
+                for (int i = 0; i < components.Count; i++)
+                {
+                    if (components[i].quantity <= 1)
+                    {
+                        filteredComponents.Add(components[i]);
+                    }
+                }
+                warehouseGrid.ItemsSource = filteredComponents;
+
+            }
+            
+            
+        }
+
+        private async void missingQuantity(object sender, RoutedEventArgs e)
+        {
+            List<Component> filteredComponents = new List<Component>();
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+
+            var response = await client.GetAsync($"api/Reservation/ListReservation");
+            if (response.IsSuccessStatusCode == true)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<JObject>(json);
+                var reservationJson = obj["value"].ToString();
+                var reservations = JsonConvert.DeserializeObject<List<Reservation>>(reservationJson);
+                
+                response = await client.GetAsync($"api/Component/SendComponent");
+                if(response.IsSuccessStatusCode == true)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    obj = JsonConvert.DeserializeObject<JObject>(json);
+                    var componentsJson = obj["value"].ToString();
+                    var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
+                    for (int i = 0; i < reservations.Count; i++)
+                    {
+                        for (int j = 0; j < components.Count; j++)
+                        {
+                            if (reservations[i].componentID == components[j].componentID)
+                            {
+                                if (components[j].quantity < reservations[i].reservationQuantity)
+                                {
+                                    filteredComponents.Add(components[j]);
+                                }
+                            }
+                        }
+                    }
+                    warehouseGrid.ItemsSource = filteredComponents;
+                }
+                
+            }
+            
+           
+        }
+
+        private async void All(object sender, RoutedEventArgs e)
+        {
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+
+            var response = await client.GetAsync($"api/Component/SendComponent");
+            if (response.IsSuccessStatusCode == true)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<JObject>(json);
+                var componentsJson = obj["value"].ToString();
+                var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
+                warehouseGrid.ItemsSource = components;
+
+
+            }
         }
     }
 }

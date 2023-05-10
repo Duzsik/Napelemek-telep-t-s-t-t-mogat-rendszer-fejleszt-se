@@ -13,16 +13,23 @@
         <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF1B1919" Background="#FF1B1919">
             <TabItem Header="Main table" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
                 <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Label Content="Warehouse manager main" HorizontalAlignment="Left" Margin="3,-5,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Orange"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="52*"/>
+                        <ColumnDefinition Width="67*"/>
+                        <ColumnDefinition Width="79*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Warehouse manager main" HorizontalAlignment="Left" Margin="3,-5,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Orange" Grid.ColumnSpan="2"/>
                     <Button Style="{StaticResource ExitButtonTemplate}" Name="mainExitBtn" Content="Back" Height="25" Width="60" FontSize="16" FontWeight="Bold" Click="mainExitBtn_Click"/>
-                    <Label Content="Assets with low quantity:" HorizontalAlignment="Left" Margin="243,22,0,0" VerticalAlignment="Top" Foreground="White"/>
-                    <Label Content="Missing but needed assets:" HorizontalAlignment="Left" Margin="413,24,0,0" VerticalAlignment="Top" Foreground="White"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="385,29,0,0" VerticalAlignment="Top"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="566,31,0,0" VerticalAlignment="Top"/>
-                    <Grid Width="580" Height="300">
-                        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                    <Label Content="Assets with low quantity:" HorizontalAlignment="Left" Margin="87,22,0,0" VerticalAlignment="Top" Foreground="White" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <Label Content="Missing but needed assets:" HorizontalAlignment="Left" Margin="56,24,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="2"/>
+                    <RadioButton Name="AllRadio" HorizontalAlignment="Left" Margin="72,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.908,0.62" Checked="All" Grid.Column="1"/>
+                    <RadioButton Name="lowQuantityCheck" HorizontalAlignment="Left" Margin="28,29,0,0" VerticalAlignment="Top" Checked="lowQuantity" Grid.Column="2" />
+                    <RadioButton HorizontalAlignment="Left" Margin="209,31,0,0" VerticalAlignment="Top" Checked="missingQuantity" Grid.Column="2"/>
+                    <Grid Width="580" Height="300" Grid.ColumnSpan="3" Margin="7,61,7,61">
+                        <DataGrid Name="warehouseGrid" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
                     </Grid>
+                    <Label Content="All:" HorizontalAlignment="Left" Margin="41,22,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="New assets" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
@@ -95,7 +102,7 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    <ComboBox x:Name="ProductComboBox_Copy" HorizontalAlignment="Left" Margin="217,115,0,0" VerticalAlignment="Top" Width="150" Height="25"/>
+                    <ComboBox x:Name="IntakeProductComboBox" HorizontalAlignment="Left" Margin="217,115,0,0" VerticalAlignment="Top" Width="150" Height="25"/>
                     <Label Content="Product" Foreground="White" HorizontalAlignment="Left" Margin="213,84,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <Button Style="{StaticResource RoundeButtonTemplate}"
                             x:Name="intakeBtn"
