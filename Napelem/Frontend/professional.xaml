@@ -45,28 +45,12 @@
                                 Width="65" Height="20"
                                 FontWeight="Bold"
                                 Foreground="Black"
-                                Background="Orange"/>
+                                Background="Orange" Click="refreshBtn"/>
 
                         <Grid Height="280" Width="750" >
-                            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                            <DataGrid Name="projectGrid" d:ItemsSource="{d:SampleData ItemCount=5}"/>
                         </Grid>
                         <Label Content="Change status:" HorizontalAlignment="Left" Margin="219,358,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                        <TextBox HorizontalAlignment="Left" Margin="353,366,0,0" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" Foreground="Gray">
-                            <TextBox.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </TextBox.Resources>
-
-                        </TextBox>
-                        <TextBox HorizontalAlignment="Left" Margin="503,365,0,0" TextWrapping="Wrap" Text="Project status" HorizontalContentAlignment="Center" Foreground="Gray" VerticalAlignment="Top" Width="120">
-                            <TextBox.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </TextBox.Resources>
-
-                        </TextBox>
                         <Button Style="{StaticResource RoundeButtonTemplate}"
                                 Content="Change status" HorizontalAlignment="Left"
                                 Margin="658,364,0,0"
@@ -74,19 +58,28 @@
                                 Width="110" Height="20"
                                 FontWeight="Bold"
                                 Foreground="Black"
-                                Background="Orange"/>
+                                Background="Orange" Click="changeStatus"/>
                         <Button x:Name="backBtnProjects" Style="{StaticResource ExitButtonTemplate}" Content="Back" Width="51" FontSize="16" FontWeight="Bold" Click="Project_exitBtn" />
                         <Label Content="Name" HorizontalAlignment="Left" Margin="311,3,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                         <Label Content="Status" HorizontalAlignment="Left" Margin="468,4,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                        <ComboBox Name="statusCbxBox" Width="120" Margin="506,363,168,36" Height="NaN">
+                            <ComboBoxItem Content="Completed"/>
+                            <ComboBoxItem Content="Failed"/>
+                        </ComboBox>
+                        <ComboBox x:Name="projectIDComb" Width="120" Margin="356,364,318,35" Height="NaN"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Project management" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
                     <Grid Background="#FF1B1919">
-                        <Label Content="Professional's project management page" HorizontalAlignment="Left" Margin="9,4,0,0" VerticalAlignment="Top" Foreground="Orange" FontSize="20" FontWeight="Bold"/>
-                        <Button x:Name="backBtnProjectsM" Style="{StaticResource ExitButtonTemplate}" Content="Back" HorizontalAlignment="Left" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="51" FontSize="16" FontWeight="Bold" Click="newProject_exit1"/>
-                        <Label Content="Select  project id:" HorizontalAlignment="Left" Margin="381,125,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                        <ComboBox Name="ProjectIdComboBox" HorizontalAlignment="Left" Margin="609,131,0,0" VerticalAlignment="Top" Width="120"/>
-                        <TextBox Name="projectNameTextBox" HorizontalAlignment="Left" Margin="37,118,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Project name"  VerticalAlignment="Top" Width="245">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35*"/>
+                            <ColumnDefinition Width="759*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Professional's project management page" HorizontalAlignment="Left" Margin="9,4,0,0" VerticalAlignment="Top" Foreground="Orange" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                        <Button x:Name="backBtnProjectsM" Style="{StaticResource ExitButtonTemplate}" Content="Back" Margin="20,0,0,20" Width="51" FontSize="16" FontWeight="Bold" Click="newProject_exit1" Grid.ColumnSpan="2"/>
+                        <Label Content="Select  project id:" HorizontalAlignment="Left" Margin="346,125,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
+                        <ComboBox Name="ProjectIdComboBox" HorizontalAlignment="Left" Margin="574,131,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                        <TextBox Name="projectNameTextBox"  HorizontalAlignment="Left" Margin="2,118,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Project name"  VerticalAlignment="Top" Width="245" Grid.Column="1">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>
@@ -94,7 +87,7 @@
                             </TextBox.Resources>
 
                         </TextBox>
-                        <TextBox Name="workTimeTextBox" HorizontalAlignment="Left" Margin="35,173,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Estimated work time" VerticalAlignment="Top" Width="120">
+                        <TextBox Name="workTimeTextBox" HorizontalAlignment="Left" Margin="0,173,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Estimated work time" VerticalAlignment="Top" Width="250" Grid.Column="1">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>
@@ -102,14 +95,14 @@
                             </TextBox.Resources>
 
                         </TextBox>
-                        <TextBox Name="CostumerNameTextBox" HorizontalAlignment="Left" Margin="165,0,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Customer name" VerticalAlignment="Center" Width="120">
+                        <TextBox Name="CostumerNameTextBox" HorizontalAlignment="Left" Margin="130,0,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Customer name" VerticalAlignment="Center" Width="120" Grid.Column="1">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <TextBox x:Name="descriptionTextBox" Foreground="Gray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="35,146,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="250">
+                        <TextBox x:Name="descriptionTextBox" Foreground="Gray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,146,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="250" Grid.Column="1">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="5"/>
@@ -121,13 +114,13 @@
                         <Button Style="{StaticResource RoundeButtonTemplate}"
                                 x:Name="addNewProjectBtn"
                                 Content="Add new project" HorizontalAlignment="Left"
-                                Margin="104,239,0,0"
+                                Margin="69,239,0,0"
                                 VerticalAlignment="Top"
                                 Width="112" Height="21"
                                 FontWeight="Bold"
                                 Foreground="Black"
-                                Background="Orange" Click="AddNewProjectBtn"/>
-                        <TextBox Name="projectLocationTextBox" HorizontalAlignment="Left" Margin="34,0,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Location" VerticalAlignment="Center" Width="120">
+                                Background="Orange" Click="AddNewProjectBtn" Grid.Column="1"/>
+                        <TextBox Name="projectLocationTextBox" HorizontalAlignment="Left" Margin="34,0,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Location" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>
@@ -135,20 +128,10 @@
                             </TextBox.Resources>
 
                         </TextBox>
-                        <TextBox Name="workPriceTextBox" IsReadOnly="True" HorizontalAlignment="Left" Margin="164,173,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center" Text="Estimated work price" VerticalAlignment="Top" Width="120">
-                            <TextBox.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </TextBox.Resources>
-
-                        </TextBox>
-                        <Label Content="Projects estimated price with assets:" HorizontalAlignment="Left" Margin="34,310,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                        <Label Content="Price" HorizontalAlignment="Left" Margin="325,315,0,0" VerticalAlignment="Top" Foreground="White"/>
-                        <ComboBox Name="assetSelectComboBox" HorizontalAlignment="Left" Margin="609,168,0,0" VerticalAlignment="Top" Width="120"/>
-                        <Label Content="Select assets to the project:" HorizontalAlignment="Left" Margin="381,163,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                        <Label Content="Select asset quantity:" HorizontalAlignment="Left" Margin="381,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                        <TextBox x:Name="qtyTextBox" HorizontalAlignment="Left" Margin="609,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="" VerticalAlignment="Center" Width="120">
+                        <ComboBox Name="assetSelectComboBox" HorizontalAlignment="Left" Margin="574,168,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                        <Label Content="Select assets to the project:" HorizontalAlignment="Left" Margin="346,163,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
+                        <Label Content="Select asset quantity:" HorizontalAlignment="Left" Margin="346,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
+                        <TextBox x:Name="qtyTextBox" HorizontalAlignment="Left" Margin="574,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="" VerticalAlignment="Center" Width="120" Grid.Column="1">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>
@@ -160,19 +143,40 @@
                                 x:Name="addAssetToProjectBtn"
                                 Content="Add asset to the project"
                                 HorizontalAlignment="Left"
-                                Margin="570,233,0,0"
+                                Margin="535,233,0,0"
                                 VerticalAlignment="Top"
                                 Height="32" Width="160"
                                 FontWeight="Bold"
                                 Foreground="Black"
-                                Background="Orange" Click="addAssetsToProjectBtn"/>
+                                Background="Orange" Grid.Column="1" Click="addAssetsToProjectBtn"/>
+                        <ComboBox x:Name="PriceProjectIdComboBox" HorizontalAlignment="Left" Margin="130,330,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                        <Label Content="Select  project id:" HorizontalAlignment="Left" Margin="119,299,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
+                        <Button Style="{StaticResource RoundeButtonTemplate}"
+                            x:Name="priceCalculating"
+                            Content="Calculate price"
+                            HorizontalAlignment="Left"
+                            Margin="270,311,0,0"
+                            VerticalAlignment="Top"
+                            Height="59" Width="160"
+                            FontWeight="Bold"
+                            Foreground="Black"
+                            Background="Orange" Grid.Column="1" />
+                        <TextBox x:Name="calculatedPriceTextBox" HorizontalAlignment="Left" Margin="453,332,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="162" Height="20" Grid.Column="1">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </TextBox.Resources>
+
+                        </TextBox>
+                        <Label Content="Estimated price:" HorizontalAlignment="Left" Margin="464,299,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Assets" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919" >
                     <Grid Background="#FF1B1919">
                         <Label Content="Professional's assets page" HorizontalAlignment="Left" Margin="8,4,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Orange" FontSize="20"/>
                         <Grid Height="300" Width="750" >
-                            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                            <DataGrid Name="assetGrid" d:ItemsSource="{d:SampleData ItemCount=5}"/>
                         </Grid>
                     </Grid>
                 </TabItem>

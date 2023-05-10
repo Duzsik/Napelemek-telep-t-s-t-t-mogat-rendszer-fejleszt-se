@@ -100,14 +100,23 @@
                     <Button Style="{StaticResource RoundeButtonTemplate}"
                             x:Name="intakeBtn"
                             Content="Set storage"
-                            HorizontalAlignment="Center"
-                            Margin="0,328,0,0"
+                            HorizontalAlignment="Left"
+                            Margin="182,368,0,0"
                             VerticalAlignment="Top"
                             Width="220" Height="25"
                             FontSize="16" FontWeight="Bold"
                             Click="SetStorageClick"
                             Foreground="Black"
                             Background="Orange"/>
+                    <TextBox HorizontalAlignment="Left" Margin="217,327,0,0" x:Name="textBoxQuantity" TextWrapping="Wrap" VerticalContentAlignment="Center" Width="150" Height="25" VerticalAlignment="Top">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
+                    <Label Content="Quantity" Foreground="White" HorizontalAlignment="Left" Margin="216,297,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
 
                 </Grid>
             </TabItem>

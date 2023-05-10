@@ -81,6 +81,7 @@ namespace Napelem
             comp.name = assetNameTextBox.Text;
             comp.price = int.Parse(assetPriceTextBox.Text);
             comp.max_quantity = int.Parse(assetMaxTextBox.Text);
+            comp.quantity = 0;
             var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"api/Component/AddComponent", content);
             if (response.IsSuccessStatusCode == true)
@@ -151,20 +152,46 @@ namespace Napelem
             Component comp = new Component();
             string[] compData = ProductComboBox_Copy.Text.Split(' ');
             comp.componentID = int.Parse(compData[0]);
-            Storage stor = new Storage();
-            stor.level = int.Parse(textBoxLevel.Text);
-            stor.row = int.Parse(textBoxRow.Text);
-            stor.column = int.Parse(textBoxColumn.Text);
-            stor.componentID = comp.componentID;
-            ComponentStorage compStor = new ComponentStorage();
-            compStor.Component = comp;
-            compStor.Storage = stor;
-            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(compStor), System.Text.Encoding.UTF8, "application/json");
-            var response = await client.PostAsync($"api/Storage/AddComponentToStorage", content);
+
+            var response = await client.GetAsync($"api/Component/SendComponent");
             if (response.IsSuccessStatusCode == true)
             {
-                MessageBox.Show("Intake was successful.");
+                var json = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<JObject>(json);
+                var componentsJson = obj["value"].ToString();
+                var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
+                for (int i = 0; i < components.Count; i++)
+                {
+                    if (components[i].componentID == comp.componentID)
+                    {
+                        if (components[i].max_quantity< int.Parse(textBoxQuantity.Text))
+                        {
+                            MessageBox.Show("The quantity is greater then the max quantity.");
+                        }
+                        else
+                        {
+                            comp.quantity = int.Parse(textBoxQuantity.Text);
+                            Storage stor = new Storage();
+                            stor.level = int.Parse(textBoxLevel.Text);
+                            stor.row = int.Parse(textBoxRow.Text);
+                            stor.column = int.Parse(textBoxColumn.Text);
+                            stor.componentID = comp.componentID;
+                            ComponentStorage compStor = new ComponentStorage();
+                            compStor.Component = comp;
+                            compStor.Storage = stor;
+                            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(compStor), System.Text.Encoding.UTF8, "application/json");
+                            response = await client.PostAsync($"api/Storage/AddComponentToStorage", content);
+                            if (response.IsSuccessStatusCode == true)
+                            {
+                                MessageBox.Show("Intake was successful.");
+                            }
+                        }
+                    }
+
+                }
             }
+
+            
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Napelem
     {
         public Project project { get; set; }
         public Component component { get; set; }
+        public int qty { get; set; }
     }
     
     public partial class professional : Window
@@ -44,6 +45,7 @@ namespace Napelem
             LoadCompontents();
             LoadProjects();
             this.emp = e;
+            
         }
         public async void LoadCompontents()
         {
@@ -61,10 +63,14 @@ namespace Napelem
                 {                   
                     assetSelectComboBox.Items.Add(components[i].componentID + " " + components[i].name);
                 }
+                assetGrid.ItemsSource= components;
             }
         }
         public async void LoadProjects()
         {
+            ProjectIdComboBox.Items.Clear();
+            PriceProjectIdComboBox.Items.Clear();
+            projectIDComb.Items.Clear();
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
 
@@ -77,9 +83,12 @@ namespace Napelem
                 var projects = JsonConvert.DeserializeObject<List<Project>>(projectsJson);
                 for (int i = 0; i < projects.Count; i++)
                 {
-                   
+
                     ProjectIdComboBox.Items.Add(projects[i].projectID + " " + projects[i].name);
+                    PriceProjectIdComboBox.Items.Add(projects[i].projectID + " " + projects[i].name);
+                    projectIDComb.Items.Add(projects[i].projectID + " " + projects[i].name);
                 }
+                projectGrid.ItemsSource = projects;
             }
         }
 
@@ -104,24 +113,50 @@ namespace Napelem
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
 
-            Project pro = new Project();
-            string[] proData = ProjectIdComboBox.Text.Split(' ');
-            pro.projectID = int.Parse(proData[0]);
-
-            Component comp = new Component();
-            string[] compData = assetSelectComboBox.Text.Split(' ');
-            comp.componentID = int.Parse(compData[0]);
-
-            ProjectComponent projectComp = new ProjectComponent();
-            projectComp.component = comp;
-            projectComp.project = pro;
-
-            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp), System.Text.Encoding.UTF8, "application/json");
-            var response = await client.PostAsync($"api/Reservation/AddReservation", content);
+            var response = await client.GetAsync($"api/Component/SendComponent");
             if (response.IsSuccessStatusCode == true)
             {
-                MessageBox.Show("Intake was successful.");
+                var json = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<JObject>(json);
+                var componentsJson = obj["value"].ToString();
+                var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
+                Project pro = new Project();
+                string[] proData = ProjectIdComboBox.Text.Split(' ');
+                pro.projectID = int.Parse(proData[0]);
+
+
+
+                Component comp = new Component();
+                string[] compData = assetSelectComboBox.Text.Split(' ');
+                comp.componentID = int.Parse(compData[0]);
+
+                ProjectComponent projectComp = new ProjectComponent();
+                projectComp.component = comp;
+                projectComp.project = pro;
+                projectComp.qty = int.Parse(qtyTextBox.Text);
+                for(int i = 0; i < components.Count; i++)
+                {
+                    if (components[i].componentID == projectComp.component.componentID)
+                    {
+                        if (components[i].quantity < projectComp.component.quantity)
+                        {
+                            projectComp.project.status = "Wait";
+                        }
+                        else if (components[i].quantity >= projectComp.component.quantity)
+                        {
+                            projectComp.project.status = "Scheduled";
+                        }
+                    }
+                }
+                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp), System.Text.Encoding.UTF8, "application/json");
+                response = await client.PostAsync($"api/Reservation/AddReservation", content);
+                if (response.IsSuccessStatusCode == true)
+                {
+                    MessageBox.Show("Intake was successful.");
+                }
             }
+
+            
         }
 
         private async void AddNewProjectBtn(object sender, RoutedEventArgs e)
@@ -138,12 +173,33 @@ namespace Napelem
             addPro.project_price = addPro.estimated_Time*addPro.wage;
             addPro.status = "New";
             addPro.employeeID = emp.employeeID;
-            workPriceTextBox.Text=addPro.project_price.ToString();
             var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(addPro), System.Text.Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"api/Project/AddProject", content);
             if (response.IsSuccessStatusCode == true)
             {
-                MessageBox.Show("Intake was successful.");
+                MessageBox.Show("Adding project was successful.");
+            }
+        }
+
+        private void refreshBtn(object sender, RoutedEventArgs e)
+        {
+            LoadProjects();
+        }
+
+        private async void changeStatus(object sender, RoutedEventArgs e)
+        {
+
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+            Project pro = new Project();
+            string[] proData = projectIDComb.Text.Split(' ');
+            pro.projectID = int.Parse(proData[0]);
+            pro.status = statusCbxBox.Text;
+            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(pro), System.Text.Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"api/Project/ChangeStatus", content);
+            if (response.IsSuccessStatusCode == true)
+            {
+                MessageBox.Show("Status changed.");
             }
         }
     }

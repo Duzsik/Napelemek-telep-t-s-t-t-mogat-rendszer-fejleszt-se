@@ -79,7 +79,7 @@
                Style = "{StaticResource ExitButtonTemplate}"
                x:Name="closeApplicationBtn"
                FontWeight="Bold"
-               Content="Close"
+               Content="Close" Click="closeClick"
                 />
         </Grid>
     </Border>

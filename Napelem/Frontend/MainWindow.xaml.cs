@@ -110,5 +110,10 @@ namespace Napelem
         {
 
         }
+
+        private void closeClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
