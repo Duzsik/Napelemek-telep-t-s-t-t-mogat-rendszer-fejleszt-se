@@ -26,20 +26,24 @@ namespace Napelem
     {
         public Project project { get; set; }
         public Component component { get; set; }
-    }   
+    }
+    
     public partial class professional : Window
     {
+        private Employee emp;
+
         void exit()
         {
             MainWindow objmainWindow = new MainWindow();
             this.Close();
             objmainWindow.Show();
         }
-        public professional()
+        public professional(Employee e)
         {
             InitializeComponent();
             LoadCompontents();
             LoadProjects();
+            this.emp = e;
         }
         public async void LoadCompontents()
         {
@@ -113,6 +117,28 @@ namespace Napelem
 
             var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp), System.Text.Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"api/Reservation/AddReservation", content);
+            if (response.IsSuccessStatusCode == true)
+            {
+                MessageBox.Show("Intake was successful.");
+            }
+        }
+
+        private async void AddNewProjectBtn(object sender, RoutedEventArgs e)
+        {
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");          
+            Project addPro = new Project();
+            addPro.name = projectNameTextBox.Text;
+            addPro.project_price = int.Parse(workPriceTextBox.Text);
+            addPro.estimated_Time = int.Parse(workTimeTextBox.Text);
+            addPro.project_description = descriptionTextBox.Text;
+            addPro.project_location = projectLocationTextBox.Text;
+            addPro.project_orderer = CostumerNameTextBox.Text;
+            addPro.wage = 2000;
+            addPro.status = "New";
+            addPro.employeeID = emp.employeeID;
+            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(addPro), System.Text.Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"api/Project/AddProject", content);
             if (response.IsSuccessStatusCode == true)
             {
                 MessageBox.Show("Intake was successful.");

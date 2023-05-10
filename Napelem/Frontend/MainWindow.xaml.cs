@@ -33,6 +33,8 @@ namespace Napelem
     
         }
 
+
+
         private void ShowPass_Checked(object sender, RoutedEventArgs e)
         {
             passwordTxtBox.Text = passwordBox.Password;
@@ -82,7 +84,8 @@ namespace Napelem
                     }
                     if (employee.role == "professional")
                     {
-                        professional prof = new professional();
+                        professional prof = new professional(employee);
+                        
                         this.Close();
                         prof.Show();
                     }

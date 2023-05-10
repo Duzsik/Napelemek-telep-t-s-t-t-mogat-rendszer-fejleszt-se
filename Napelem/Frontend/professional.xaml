@@ -60,7 +60,7 @@
                     <Label Content="Select  project id:" HorizontalAlignment="Left" Margin="40,160,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <ComboBox Name="ProjectIdComboBox" HorizontalAlignment="Left" Margin="268,166,0,0" VerticalAlignment="Top" Width="120" />
                     <Label Content="Added assets:" HorizontalAlignment="Left" Margin="40,286,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                    <TextBox HorizontalAlignment="Left" Margin="174,64,0,0" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Top" Width="120">
+                    <TextBox Name="projectNameTextBox" HorizontalAlignment="Left" Margin="27,65,0,0" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Top" Width="120">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -68,7 +68,7 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    <TextBox HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" Text="Estimated work time" VerticalAlignment="Top" Width="120">
+                    <TextBox Name="workTimeTextBox" HorizontalAlignment="Left" Margin="208,65,0,0" TextWrapping="Wrap" Text="Estimated work time" VerticalAlignment="Top" Width="120">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -76,8 +76,7 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    <Label Content="Project ID" HorizontalAlignment="Left" Margin="95,61,0,0" VerticalAlignment="Top" Foreground="White"/>
-                    <TextBox HorizontalAlignment="Center" Margin="0,112,0,0" TextWrapping="Wrap" Text="Customer name" VerticalAlignment="Top" Width="120">
+                    <TextBox Name="CostumerNameTextBox" HorizontalAlignment="Left" Margin="208,114,0,0" TextWrapping="Wrap" Text="Customer name" VerticalAlignment="Top" Width="120">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -85,8 +84,8 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    <Button Style="{StaticResource RoundeButtonTemplate}" Content="Add new project" HorizontalAlignment="Left" Margin="503,111,0,0" VerticalAlignment="Top" Width="112" Height="21"/>
-                    <TextBox HorizontalAlignment="Left" Margin="174,110,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="120">
+                    <Button Style="{StaticResource RoundeButtonTemplate}" Content="Add new project" HorizontalAlignment="Left" Margin="580,89,0,0" VerticalAlignment="Top" Width="112" Height="21" Click="AddNewProjectBtn" RenderTransformOrigin="0.5,-0.33"/>
+                    <TextBox Name="projectLocationTextBox" HorizontalAlignment="Left" Margin="27,114,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="120">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -94,7 +93,7 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    <TextBox HorizontalAlignment="Left" Margin="497,65,0,0" TextWrapping="Wrap" Text="Estimated work price" VerticalAlignment="Top" Width="120">
+                    <TextBox Name="workPriceTextBox" HorizontalAlignment="Left" Margin="397,65,0,0" TextWrapping="Wrap" Text="Estimated work price" VerticalAlignment="Top" Width="120">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -117,6 +116,14 @@
                     </TextBox>
                     <Button Style="{StaticResource RoundeButtonTemplate}" Content="Add asset to the project" HorizontalAlignment="Left" Margin="411,198,0,0" VerticalAlignment="Top" Height="32" Width="160" Click="addAssetsToProjectBtn" />
                     <Label Content="Assets" HorizontalAlignment="Left" Margin="147,312,0,0" VerticalAlignment="Top" Foreground="White"/>
+                    <TextBox x:Name="descriptionTextBox" HorizontalAlignment="Left" Margin="397,114,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="120">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Assets">
