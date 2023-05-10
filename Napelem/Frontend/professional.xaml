@@ -58,7 +58,7 @@
                     <Label Content="Professional's project page" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
                     <Button Style="{StaticResource RoundeButtonTemplate}" Content="Exit" HorizontalAlignment="Left" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="51" FontSize="16" FontWeight="Bold" Click="newProject_exit1"/>
                     <Label Content="Select  project id:" HorizontalAlignment="Left" Margin="40,160,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="268,166,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+                    <ComboBox Name="ProjectIdComboBox" HorizontalAlignment="Left" Margin="268,166,0,0" VerticalAlignment="Top" Width="120" />
                     <Label Content="Added assets:" HorizontalAlignment="Left" Margin="40,286,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <TextBox HorizontalAlignment="Left" Margin="174,64,0,0" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Top" Width="120">
                         <TextBox.Resources>
@@ -104,7 +104,7 @@
                     </TextBox>
                     <Label Content="Projects estimated price with assets:" HorizontalAlignment="Left" Margin="411,301,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <Label Content="Price" HorizontalAlignment="Left" Margin="697,304,0,0" VerticalAlignment="Top" Foreground="White"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="268,203,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+                    <ComboBox Name="assetSelectComboBox"  HorizontalAlignment="Left" Margin="268,203,0,0" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Select assets to the project:" HorizontalAlignment="Left" Margin="40,198,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <Label Content="Select asset quantity:" HorizontalAlignment="Left" Margin="40,229,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                     <TextBox HorizontalAlignment="Left" Margin="268,236,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="120">

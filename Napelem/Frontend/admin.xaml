@@ -8,13 +8,6 @@
         ResizeMode="NoResize"
         Title="admin" Height="400" Width="450">
     <Grid Background="#FF1B1919" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TextBox x:Name="nameTextBox" Height="20" Margin="148,110,148,254" Text="">
-            <TextBox.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </TextBox.Resources>
-        </TextBox>
         <ComboBox Name="roleComboBox" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Width="150" Height="20">
             <ComboBoxItem Content="warehouse manager"/>
             <ComboBoxItem Content="warehouse worker"/>
@@ -68,10 +61,17 @@
         <TextBlock HorizontalAlignment="Left" Margin="147,145,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Foreground="White" FontSize="15" FontWeight="Bold" />
         <Button Style="{StaticResource RoundeButtonTemplate}" x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Margin="10,0,0,20" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Width="60" Height="25" Click="backBtn_Click" FontSize="16" FontWeight="Bold"/>
         <Label Content="Registrate new worker" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="28" FontFamily="Haettenschweiler"/>
-        <TextBox x:Name="userNameTextBox" Height="20" Margin="148,166,148,198" Text="sdvd">
+        <TextBox x:Name="userNameTextBox" Height="20" Margin="148,166,148,198" Text="&#xA;" InputScope="Default">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <TextBox x:Name="nameTextBox" Height="20" Margin="148,110,148,254" Text="" InputScope="Default" Panel.ZIndex="100">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="8"/>
                 </Style>
             </TextBox.Resources>
         </TextBox>
