@@ -20,39 +20,28 @@
                         <ComboBox x:Name="projectcmbbx" HorizontalAlignment="Left" Margin="605,26,0,0" VerticalAlignment="Top" Width="120"/>
                         <Label Content="Assets and position" HorizontalAlignment="Left" Margin="45,86,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" />
                         <Grid Width="750" Height="290" >
-                            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" />
+                            <DataGrid Name="ProjectDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" />
                         </Grid>
+                        <Button Style="{StaticResource RoundeButtonTemplate}" 
+                            x:Name="ChangeStatus"
+                            Content="Change status" 
+                            HorizontalAlignment="Left"
+                            Margin="625,390,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="135" Height="20"
+                            FontWeight="Bold"
+                            Foreground="Black"
+                            Background="Orange" Click="ChangeProjectStatus"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Assett output" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919">
                     <Grid Background="#FF1B1919">
-                        <Label Content="Asset output page" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top" Foreground="Orange" FontSize="20" FontWeight="Bold"/>
+                        <Label Content="Project details" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top" Foreground="Orange" FontSize="20" FontWeight="Bold"/>
                         <Label Content="Project" HorizontalAlignment="Left" Margin="521,19,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="605,26,0,0" VerticalAlignment="Top" Width="120"/>
-                        <Label Content="Choose asset" HorizontalAlignment="Left" Margin="23,84,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                        <ComboBox x:Name="assetcmbbx" HorizontalAlignment="Left" Margin="142,91,0,0" VerticalAlignment="Top" Width="120"/>
-                        <Label Content="Add quantity" HorizontalAlignment="Left" Margin="24,125,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                        <TextBox x:Name="qtyTextBox" HorizontalAlignment="Left" Margin="144,133,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="118">
-                            <TextBox.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </TextBox.Resources>
-
-                        </TextBox>
-                        <Button Style="{StaticResource RoundeButtonTemplate}" 
-                                x:Name="takeOutBtn"
-                                Content="Take out asset" 
-                                HorizontalAlignment="Left"
-                                Margin="64,171,0,0" 
-                                VerticalAlignment="Top" 
-                                Width="135" Height="20"
-                                FontWeight="Bold"
-                                Foreground="Black"
-                                Background="Orange"/>
-                        <Label Content="Best available route:" HorizontalAlignment="Left" Margin="50,353,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" />
-                        <Grid Height="260" Width="400" Margin="323,76,71,70">
-                            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                        <ComboBox Name="FilterProject" HorizontalAlignment="Left" Margin="605,26,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ProjectSelection"/>
+                        <Label Content="" HorizontalAlignment="Left" Margin="24,125,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                        <Grid Height="300" Margin="24,76,-231,44" Width="700">
+                            <DataGrid Name="WorkerDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-154,-12,0,-12" HorizontalAlignment="Left" Width="751" RenderTransformOrigin="0.428,0.5"/>
                         </Grid>
                     </Grid>
                 </TabItem>
