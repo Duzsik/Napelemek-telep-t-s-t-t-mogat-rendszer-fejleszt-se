@@ -149,7 +149,7 @@
                                 FontWeight="Bold"
                                 Foreground="Black"
                                 Background="Orange" Grid.Column="1" Click="addAssetsToProjectBtn"/>
-                        <ComboBox x:Name="PriceProjectIdComboBox" HorizontalAlignment="Left" Margin="130,330,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                        <ComboBox x:Name="ReservationComboBox" HorizontalAlignment="Left" Margin="130,330,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
                         <Label Content="Select  project id:" HorizontalAlignment="Left" Margin="119,299,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
                         <Button Style="{StaticResource RoundeButtonTemplate}"
                             x:Name="priceCalculating"
@@ -160,16 +160,11 @@
                             Height="59" Width="160"
                             FontWeight="Bold"
                             Foreground="Black"
-                            Background="Orange" Grid.Column="1" />
-                        <TextBox x:Name="calculatedPriceTextBox" HorizontalAlignment="Left" Margin="453,332,0,0" TextWrapping="Wrap" Foreground="Gray" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="162" Height="20" Grid.Column="1">
-                            <TextBox.Resources>
-                                <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </TextBox.Resources>
+                            Background="Orange" Grid.Column="1" Click="CalculatePrice" />
+                            
 
-                        </TextBox>
                         <Label Content="Estimated price:" HorizontalAlignment="Left" Margin="464,299,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
+                        <Label Name="EstimatedPrice" Content="" HorizontalAlignment="Left" Margin="464,335,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Assets" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919" >

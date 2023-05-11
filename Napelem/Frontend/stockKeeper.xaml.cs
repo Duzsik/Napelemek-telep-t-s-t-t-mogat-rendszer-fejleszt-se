@@ -19,11 +19,21 @@ namespace Napelem
     /// </summary>
     public partial class stockKeeper : Window
     {
-       
+        void exit()
+        {
+            MainWindow objmainWindow = new MainWindow();
+            this.Close();
+            objmainWindow.Show();
+        }
         public stockKeeper()
         {
             InitializeComponent();
        
+        }
+
+        private void back(object sender, RoutedEventArgs e)
+        {
+            exit();
         }
     }
 }

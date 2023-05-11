@@ -69,7 +69,7 @@ namespace Napelem
         public async void LoadProjects()
         {
             ProjectIdComboBox.Items.Clear();
-            PriceProjectIdComboBox.Items.Clear();
+            ReservationComboBox.Items.Clear();
             projectIDComb.Items.Clear();
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
@@ -81,13 +81,38 @@ namespace Napelem
                 var obj = JsonConvert.DeserializeObject<JObject>(json);
                 var projectsJson = obj["value"].ToString();
                 var projects = JsonConvert.DeserializeObject<List<Project>>(projectsJson);
-                for (int i = 0; i < projects.Count; i++)
-                {
 
-                    ProjectIdComboBox.Items.Add(projects[i].projectID + " " + projects[i].name);
-                    PriceProjectIdComboBox.Items.Add(projects[i].projectID + " " + projects[i].name);
-                    projectIDComb.Items.Add(projects[i].projectID + " " + projects[i].name);
+
+                response = await client.GetAsync($"api/Reservation/ListReservation");
+                if (response.IsSuccessStatusCode == true)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    obj = JsonConvert.DeserializeObject<JObject>(json);
+                    var reservationJson = obj["value"].ToString();
+                    var reservations = JsonConvert.DeserializeObject<List<Reservation>>(reservationJson);
+                    for (int i = 0; i < projects.Count; i++)
+                    {
+                        for (int j = 0; j<reservations.Count; j++)
+                        {
+                            if (reservations[j].projectID == projects[i].projectID)
+                            {
+                               if( ReservationComboBox.Items.Contains(projects[i].projectID + " " + projects[i].name) != true)
+                                {
+                                    ReservationComboBox.Items.Add(projects[i].projectID + " " + projects[i].name);
+                                }
+                                
+
+                            }
+                        }
+                        if (projects[i].employeeID == emp.employeeID)
+                        {
+                            ProjectIdComboBox.Items.Add(projects[i].projectID + " " + projects[i].name);
+                            projectIDComb.Items.Add(projects[i].projectID + " " + projects[i].name);
+                        }
+
+                    }
                 }
+                
                 projectGrid.ItemsSource = projects;
             }
         }
@@ -152,7 +177,7 @@ namespace Napelem
                 response = await client.PostAsync($"api/Reservation/AddReservation", content);
                 if (response.IsSuccessStatusCode == true)
                 {
-                    MessageBox.Show("Intake was successful.");
+                    MessageBox.Show("Reservation was successful.");
                 }
             }
 
@@ -201,6 +226,50 @@ namespace Napelem
             {
                 MessageBox.Show("Status changed.");
             }
+        }
+
+        private async void CalculatePrice(object sender, RoutedEventArgs e)
+        {
+            int price = 0;
+            string[] projectData = ReservationComboBox.Text.Split(' ');
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7186/");
+            var response = await client.GetAsync($"api/Project?projectID={projectData[0]}");
+            response.EnsureSuccessStatusCode();
+            var responseBody = await response.Content.ReadAsStringAsync();
+            var project = JsonConvert.DeserializeObject<Project>(responseBody);
+            price += project.project_price;
+           
+            response = await client.GetAsync($"api/Reservation/ListReservation");
+            if (response.IsSuccessStatusCode == true)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<JObject>(json);
+                var reservationJson = obj["value"].ToString();
+                var reservations = JsonConvert.DeserializeObject<List<Reservation>>(reservationJson);
+                response = await client.GetAsync($"api/Component/SendComponent");
+                if (response.IsSuccessStatusCode == true)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    obj = JsonConvert.DeserializeObject<JObject>(json);
+                    var componentsJson = obj["value"].ToString();
+                    var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
+                    for(int i =0; i<reservations.Count; i++)
+                    {
+                        for(int j =0; j<components.Count; j++)
+                        {
+                            if (reservations[i].projectID == project.projectID && reservations[i].componentID == components[j].componentID)
+                            {
+                                price += reservations[i].reservationQuantity * components[j].price;
+                            }
+                        }
+                    }
+                    
+
+                }
+                EstimatedPrice.Content = price.ToString();
+            }
+            
         }
     }
 }
