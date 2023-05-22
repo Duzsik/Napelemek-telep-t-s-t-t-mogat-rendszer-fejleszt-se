@@ -96,15 +96,27 @@ namespace Napelem
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
             Component comp = new Component();
-            comp.name = assetNameTextBox.Text;
-            comp.price = int.Parse(assetPriceTextBox.Text);
-            comp.max_quantity = int.Parse(assetMaxTextBox.Text);
-            comp.quantity = 0;
-            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
-            var response = await client.PostAsync($"api/Component/AddComponent", content);
-            if (response.IsSuccessStatusCode == true)
+            if(assetNameTextBox.Text == String.Empty || assetPriceTextBox.Text == String.Empty || assetMaxTextBox.Text == String.Empty)
             {
-                MessageBox.Show("The product added to the database");
+                MessageBox.Show("Fill all the boxes!");
+            }
+            else
+            {
+                comp.name = assetNameTextBox.Text;
+                comp.price = int.Parse(assetPriceTextBox.Text);
+                comp.max_quantity = int.Parse(assetMaxTextBox.Text);
+                comp.quantity = 0;
+                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
+                var response = await client.PostAsync($"api/Component/AddComponent", content);
+                if (response.IsSuccessStatusCode == true)
+                {
+                    MessageBox.Show("The product added to the database");
+                }
+                else
+                {
+                    MessageBox.Show("The product already exists!");
+                }
+            
             }
 
         }
@@ -114,48 +126,64 @@ namespace Napelem
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
             Component comp = new Component();
-            string[] compData = ProductComboBox.Text.Split(' ');
-            comp.componentID = int.Parse(compData[0]);
-            comp.name = compData[1];
-            if(NewPriceTextBox.Text == String.Empty)
+            if(ProductComboBox.Text != String.Empty)
             {
-                comp.max_quantity = int.Parse(NewPriceTextBox_Copy.Text);
-                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"api/Component/ChangeMaxQuantity", content);
-                if (response.IsSuccessStatusCode == true)
+                string[] compData = ProductComboBox.Text.Split(' ');
+                comp.componentID = int.Parse(compData[0]);
+                comp.name = compData[1];
+                if (NewPriceTextBox.Text == String.Empty && NewPriceTextBox_Copy.Text != String.Empty)
                 {
-                    MessageBox.Show("The max quantity has been updated.");
+                    comp.max_quantity = int.Parse(NewPriceTextBox_Copy.Text);
+                    var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync($"api/Component/ChangeMaxQuantity", content);
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        MessageBox.Show("The max quantity has been updated.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("The component does not exists!");
+                    }
                 }
-            }
-            else if (NewPriceTextBox_Copy.Text == String.Empty)
-            {
-                comp.price = int.Parse(NewPriceTextBox.Text);
-                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"api/Component/ChangePrice", content);
-                if (response.IsSuccessStatusCode == true)
+                else if (NewPriceTextBox_Copy.Text == String.Empty && NewPriceTextBox.Text != String.Empty)
                 {
-                    MessageBox.Show("The price has been updated.");
+                    comp.price = int.Parse(NewPriceTextBox.Text);
+                    var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync($"api/Component/ChangePrice", content);
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        MessageBox.Show("The price has been updated.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("The component does not exists!");
+                    }
                 }
-            }
-            else if (NewPriceTextBox.Text != String.Empty && NewPriceTextBox_Copy.Text != String.Empty)
-            {
-                comp.max_quantity = int.Parse(NewPriceTextBox_Copy.Text);
-                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"api/Component/ChangeMaxQuantity", content);
-                if (response.IsSuccessStatusCode == true)
+                else if (NewPriceTextBox.Text != String.Empty && NewPriceTextBox_Copy.Text != String.Empty)
                 {
-                    MessageBox.Show("The max quantity has been updated.");
-                }
-                comp.price = int.Parse(NewPriceTextBox.Text);
-                content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
-                response = await client.PostAsync($"api/Component/ChangePrice", content);
-                if (response.IsSuccessStatusCode == true)
-                {
-                    MessageBox.Show("The price has been updated.");
-                }
+                    comp.max_quantity = int.Parse(NewPriceTextBox_Copy.Text);
+                    var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync($"api/Component/ChangeMaxQuantity", content);
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        MessageBox.Show("The max quantity has been updated.");
+                    }
+                    comp.price = int.Parse(NewPriceTextBox.Text);
+                    content = new StringContent(System.Text.Json.JsonSerializer.Serialize(comp), System.Text.Encoding.UTF8, "application/json");
+                    response = await client.PostAsync($"api/Component/ChangePrice", content);
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        MessageBox.Show("The price has been updated.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("The component does not exists!");
+                    }
 
 
+                }
             }
+            
         }
 
         private void NewPriceTextBox_TextChanged(object sender, TextChangedEventArgs e)

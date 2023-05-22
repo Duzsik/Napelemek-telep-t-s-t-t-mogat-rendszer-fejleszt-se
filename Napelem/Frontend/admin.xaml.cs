@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.Json;
+using System.Net;
 
 
 namespace Napelem
@@ -45,26 +46,32 @@ namespace Napelem
             emp.username = userNameTextBox.Text;
             emp.role = roleComboBox.Text;
             emp.password = passTextBox.Password;
-            using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:7186/");
-            try
+            if (nameTextBox.Text == String.Empty || userNameTextBox.Text == String.Empty || roleComboBox.Text == String.Empty || passTextBox.Password ==String.Empty) 
             {
-                var content = new StringContent(JsonSerializer.Serialize(emp), System.Text.Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"api/Admin", content);
-                if (response.IsSuccessStatusCode == true)
+                MessageBox.Show("Fill all the boxes");
+            }
+            else
+            {
+                using var client = new HttpClient();
+                client.BaseAddress = new Uri("https://localhost:7186/");
+                try
                 {
-                    MessageBox.Show("Registration was successful");
+                    var content = new StringContent(JsonSerializer.Serialize(emp), System.Text.Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync($"api/Admin", content);
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        MessageBox.Show("Registration was successful");
+                    }
+                    else if(response.StatusCode == HttpStatusCode.Conflict)
+                    {
+                        MessageBox.Show("User already exists.");
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-
-            }
-
-
-
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }      
         }
     }
 }

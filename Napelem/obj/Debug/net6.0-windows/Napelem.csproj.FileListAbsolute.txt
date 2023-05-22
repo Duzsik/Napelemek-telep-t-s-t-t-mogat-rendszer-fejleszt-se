@@ -398,3 +398,4 @@ D:\Egyetem\rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztes
 D:\Egyetem\rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\App.baml
 D:\Egyetem\rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\Frontend\stockKeeper.baml
 D:\Egyetem\rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\Frontend\storageManager.baml
+C:\!Suli\Rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\App.baml

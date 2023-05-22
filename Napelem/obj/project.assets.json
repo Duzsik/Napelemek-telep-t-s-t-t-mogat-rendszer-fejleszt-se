@@ -3597,24 +3597,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gergo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Gergo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Egyetem\\rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\Napelem.csproj",
+      "projectUniqueName": "C:\\!Suli\\Rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\Napelem.csproj",
       "projectName": "Napelem",
-      "projectPath": "D:\\Egyetem\\rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\Napelem.csproj",
+      "projectPath": "C:\\!Suli\\Rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\Napelem.csproj",
       "packagesPath": "C:\\Users\\Gergo\\.nuget\\packages\\",
-      "outputPath": "D:\\Egyetem\\rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\obj\\",
+      "outputPath": "C:\\!Suli\\Rendszerfejlesztes\\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\\Napelem\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
         "C:\\Users\\Gergo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -16,8 +16,7 @@ using Napelem.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Net.Http;
 using Newtonsoft.Json;
-
-
+using System.Net;
 
 namespace Napelem
 {
@@ -60,15 +59,14 @@ namespace Napelem
             try
             {
                 var response = await client.GetAsync($"api/Employee?username={emp.username}&password={emp.password}");
-                response.EnsureSuccessStatusCode();
-                var responseBody = await response.Content.ReadAsStringAsync();
-                var employee = JsonConvert.DeserializeObject<Employee>(responseBody);
-                if (employee == null)
+                if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
                     MessageBox.Show("Username or password is incorrect");
                 }
                 else
                 {
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    var employee = JsonConvert.DeserializeObject<Employee>(responseBody);
                     if (employee.role == "admin")
                     {
                         admin adminWindow = new admin();
@@ -85,7 +83,7 @@ namespace Napelem
                     if (employee.role == "professional")
                     {
                         professional prof = new professional(employee);
-                        
+
                         this.Close();
                         prof.Show();
                     }
@@ -95,16 +93,14 @@ namespace Napelem
                         this.Close();
                         store.Show();
                     }
-
                 }
 
-            }
-            catch (Exception ex)
+                }catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message);
             }
-
-
+               
+                
         }
         private void Grid_ContextMenuClosing(object sender, RoutedEventArgs e)
         {
