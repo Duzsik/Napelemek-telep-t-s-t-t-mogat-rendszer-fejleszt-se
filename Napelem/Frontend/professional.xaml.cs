@@ -173,12 +173,20 @@ namespace Napelem
                         }
                     }
                 }
+                Log log = new Log()
+                {
+                    projectID = projectComp.project.projectID,
+                    status = projectComp.project.status,
+                    timestamp = DateTime.Now.ToString()
+                };
                 var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp), System.Text.Encoding.UTF8, "application/json");
                 response = await client.PostAsync($"api/Reservation/AddReservation", content);
                 if (response.IsSuccessStatusCode == true)
                 {
                     MessageBox.Show("Reservation was successful.");
                 }
+                content = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
+                response = await client.PostAsync($"api/Log/AddLog", content);
             }
 
             
@@ -198,12 +206,20 @@ namespace Napelem
             addPro.project_price = addPro.estimated_Time*addPro.wage;
             addPro.status = "New";
             addPro.employeeID = emp.employeeID;
+            Log log = new Log()
+            {
+                projectID = addPro.projectID,
+                status = addPro.status,
+                timestamp = DateTime.Now.ToString()
+            };
             var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(addPro), System.Text.Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"api/Project/AddProject", content);
             if (response.IsSuccessStatusCode == true)
             {
                 MessageBox.Show("Adding project was successful.");
             }
+            content = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
+            response = await client.PostAsync($"api/Log/AddLog", content);
         }
 
         private void refreshBtn(object sender, RoutedEventArgs e)
@@ -220,12 +236,20 @@ namespace Napelem
             string[] proData = projectIDComb.Text.Split(' ');
             pro.projectID = int.Parse(proData[0]);
             pro.status = statusCbxBox.Text;
+            Log log = new Log()
+            {
+                projectID = pro.projectID,
+                status = pro.status,
+                timestamp = DateTime.Now.ToString()
+            };
             var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(pro), System.Text.Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"api/Project/ChangeStatus", content);
             if (response.IsSuccessStatusCode == true)
             {
                 MessageBox.Show("Status changed.");
             }
+            content = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
+            response = await client.PostAsync($"api/Log/AddLog", content);
         }
 
         private async void CalculatePrice(object sender, RoutedEventArgs e)

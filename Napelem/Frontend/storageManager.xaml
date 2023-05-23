@@ -18,6 +18,14 @@
                         <ColumnDefinition Width="67*"/>
                         <ColumnDefinition Width="79*"/>
                     </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource RoundeButtonTemplate}"
+            Content="Refresh" HorizontalAlignment="Left"
+            Margin="8,31,0,0"
+            VerticalAlignment="Top"
+            Width="64" Height="20"
+            FontWeight="Bold"
+            Foreground="Black"
+            Background="Orange" Click="refreshBtn"/>
                     <Label Content="Warehouse manager main" HorizontalAlignment="Left" Margin="3,-5,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Orange" Grid.ColumnSpan="2"/>
                     <Button Style="{StaticResource ExitButtonTemplate}" Name="mainExitBtn" Content="Back" Height="25" Width="60" FontSize="16" FontWeight="Bold" Click="mainExitBtn_Click"/>
                     <Label Content="Assets with low quantity:" HorizontalAlignment="Left" Margin="87,22,0,0" VerticalAlignment="Top" Foreground="White" Grid.ColumnSpan="2" Grid.Column="1"/>
@@ -164,5 +172,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
+
     </Grid>
 </Window>

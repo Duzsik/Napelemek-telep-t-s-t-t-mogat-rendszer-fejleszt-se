@@ -67,11 +67,18 @@ namespace Napelem
 
         private async void ChangeProjectStatus(object sender, RoutedEventArgs e)
         {
+            
             Project proj = new Project();
             string[] projData = projectcmbbx.Text.Split(' ');
             proj.projectID = int.Parse(projData[0]);
             proj.name = projData[1];
             proj.status = "InProgress";
+            Log log = new Log()
+            {
+                projectID = proj.projectID,
+                status = proj.status,
+                timestamp = DateTime.Now.ToString()
+            };
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
             var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(proj), System.Text.Encoding.UTF8, "application/json");
@@ -80,6 +87,8 @@ namespace Napelem
             {
                 MessageBox.Show("Status changed.");
             }
+            content = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
+            response = await client.PostAsync($"api/Log/AddLog", content);
         }
 
 
@@ -111,6 +120,7 @@ namespace Napelem
                     {
                         response = await client.GetAsync($"api/Storage/GetStorage?componentID={reservations[i].componentID.ToString()}");
                         response.EnsureSuccessStatusCode();
+                        //itt valami hibádzik
                         responseBody = await response.Content.ReadAsStringAsync();
                         var stor = JsonConvert.DeserializeObject<Storage>(responseBody);
                         filteredComponent.Add(stor);
@@ -119,6 +129,10 @@ namespace Napelem
             }
             
             WorkerDataGrid.ItemsSource = filteredComponent;
+        }
+        private void refreshBtn(object sender, RoutedEventArgs e)
+        {
+            Load();
         }
     }
 }

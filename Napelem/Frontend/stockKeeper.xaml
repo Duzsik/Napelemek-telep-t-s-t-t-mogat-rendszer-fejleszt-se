@@ -22,6 +22,14 @@
                         <Grid Width="750" Height="290" >
                             <DataGrid Name="ProjectDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" />
                         </Grid>
+                        <Button Style="{StaticResource RoundeButtonTemplate}"
+                Content="Refresh" HorizontalAlignment="Left"
+                Margin="21,40,0,0"
+                VerticalAlignment="Top"
+                Width="65" Height="20"
+                FontWeight="Bold"
+                Foreground="Black"
+                Background="Orange" Click="refreshBtn" RenderTransformOrigin="0.67,-0.759"/>
                         <Button Style="{StaticResource RoundeButtonTemplate}" 
                             x:Name="ChangeStatus"
                             Content="Change status" 
@@ -46,6 +54,7 @@
                     </Grid>
                 </TabItem>
             </TabControl>
+           
         </Grid>
     </Border>
 </Window>

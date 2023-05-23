@@ -39,7 +39,8 @@ namespace Napelem
         }
         public async void LoadComponent()
         {
-
+            IntakeProductComboBox.Items.Clear();
+            ProductComboBox.Items.Clear();
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
 
@@ -323,8 +324,12 @@ namespace Napelem
                 var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
                 warehouseGrid.ItemsSource = components;
 
-
             }
+        }
+        private async void refreshBtn(object sender, RoutedEventArgs e)
+        {
+
+            LoadComponent();
         }
     }
 }

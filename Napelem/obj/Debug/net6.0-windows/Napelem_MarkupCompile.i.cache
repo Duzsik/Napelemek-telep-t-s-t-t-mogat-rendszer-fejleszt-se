@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\!Suli\Rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\obj\Debug\net6.0-windows\
+S:\Egyetem\Rendszerfejlesztés\Napelem\Napelem\obj\Debug\net6.0-windows\
 Napelem
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\!Suli\Rendszerfejlesztes\Napelemek-telepiteset-tamogato-rendszer-fejlesztese\Napelem\App.xaml
+S:\Egyetem\Rendszerfejlesztés\Napelem\Napelem\App.xaml
 5847088721
 
 152033224177
-224-618389985
+224180161666
 Frontend\admin.xaml;Frontend\MainWindow.xaml;Frontend\professional.xaml;Frontend\stockKeeper.xaml;Frontend\storageManager.xaml;
 
-True
+False
 
