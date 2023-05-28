@@ -15,5 +15,7 @@ namespace Napelem.Models
         public int row { get; set; }
         public int column { get; set; }
         public int level { get; set; }
+        public int? current_quantity { get; set; }
+
     }
 }

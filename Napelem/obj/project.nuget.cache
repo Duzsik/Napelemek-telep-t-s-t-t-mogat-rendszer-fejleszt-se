@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qyTR3OJKCAsuuJpvllGhWK1e80XbE5HyoDx5feZSYk/NoUGz8d4aTj3Srzx0ng91ZQrTBQ/zipDikjYiYWjN/w==",
+  "dgSpecHash": "N8Nu4umwDlfczVfXauA9AguCPEAgXisDshOOqDhdIosrZTyTe2TLwwMfvnO5UKf0/9tJ3GCJv9AK3i3oe2xqBw==",
   "success": true,
-  "projectFilePath": "S:\\Egyetem\\Rendszerfejlesztés\\Napelem\\Napelem\\Napelem.csproj",
+  "projectFilePath": "S:\\Egyetem\\Rendszerfejlesztés\\Client\\Napelem\\Napelem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\skiba\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\skiba\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

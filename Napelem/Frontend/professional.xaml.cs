@@ -159,20 +159,8 @@ namespace Napelem
                 projectComp.component = comp;
                 projectComp.project = pro;
                 projectComp.qty = int.Parse(qtyTextBox.Text);
-                for(int i = 0; i < components.Count; i++)
-                {
-                    if (components[i].componentID == projectComp.component.componentID)
-                    {
-                        if (components[i].quantity < projectComp.component.quantity)
-                        {
-                            projectComp.project.status = "Wait";
-                        }
-                        else if (components[i].quantity >= projectComp.component.quantity)
-                        {
-                            projectComp.project.status = "Scheduled";
-                        }
-                    }
-                }
+                projectComp.project.status = "Draft";
+                
                 Log log = new Log()
                 {
                     projectID = projectComp.project.projectID,
@@ -185,6 +173,8 @@ namespace Napelem
                 {
                     MessageBox.Show("Reservation was successful.");
                 }
+                content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp.project), System.Text.Encoding.UTF8, "application/json");
+                response = await client.PostAsync($"api/Project/ChangeStatus", content);
                 content = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
                 response = await client.PostAsync($"api/Log/AddLog", content);
             }
@@ -278,9 +268,9 @@ namespace Napelem
                     obj = JsonConvert.DeserializeObject<JObject>(json);
                     var componentsJson = obj["value"].ToString();
                     var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
-                    for(int i =0; i<reservations.Count; i++)
+                    for (int i = 0; i < reservations.Count; i++)
                     {
-                        for(int j =0; j<components.Count; j++)
+                        for (int j = 0; j < components.Count; j++)
                         {
                             if (reservations[i].projectID == project.projectID && reservations[i].componentID == components[j].componentID)
                             {
@@ -288,12 +278,36 @@ namespace Napelem
                             }
                         }
                     }
-                    
-
+                    EstimatedPrice.Content = price.ToString();
+                    //ITT HIBA, SEGÍTSÉG, MÁR NEM FOG AZ AGYAM
+                    ProjectComponent projectComp = new ProjectComponent();
+                    projectComp.project = project;
+                    for (int i = 0; i < reservations.Count; i++)
+                    {
+                        for (int j = 0; j < components.Count; j++)
+                        {
+                            if (reservations[i].projectID == projectComp.project.projectID && reservations[i].componentID == components[j].componentID)
+                            {
+                                projectComp.component = components[j];
+                                if (components[i].componentID == reservations[i].componentID)
+                                {
+                                    if (components[i].quantity < projectComp.component.quantity)
+                                    {
+                                        projectComp.project.status = "Wait";
+                                    }
+                                    else if (components[i].quantity >= projectComp.component.quantity)
+                                    {
+                                        projectComp.project.status = "Scheduled";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp.project), System.Text.Encoding.UTF8, "application/json");
+                    response = await client.PostAsync($"api/Project/ChangeStatus", content);
                 }
-                EstimatedPrice.Content = price.ToString();
             }
-            
+
         }
     }
 }

@@ -102,7 +102,7 @@
 
                     </TextBox>
                     <Label Content="Level" Foreground="White" HorizontalAlignment="Left" Margin="214,245,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
-                    <TextBox HorizontalAlignment="Left" Margin="217,275,0,0" x:Name="textBoxLevel" TextWrapping="Wrap" VerticalContentAlignment="Center" Width="150" Height="25" VerticalAlignment="Top">
+                    <TextBox HorizontalAlignment="Left" Margin="217,275,0,0" x:Name="textBoxLevel" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Height="25" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -123,7 +123,7 @@
                             Click="SetStorageClick"
                             Foreground="Black"
                             Background="Orange"/>
-                    <TextBox HorizontalAlignment="Left" Margin="217,327,0,0" x:Name="textBoxQuantity" TextWrapping="Wrap" VerticalContentAlignment="Center" Width="150" Height="25" VerticalAlignment="Top">
+                    <TextBox HorizontalAlignment="Left" Margin="217,327,0,0" x:Name="textBoxQuantity" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Height="25" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5"/>

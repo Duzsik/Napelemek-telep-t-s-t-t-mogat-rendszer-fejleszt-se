@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "S:\\Egyetem\\Rendszerfejlesztés\\Napelem\\Napelem\\Napelem.csproj": {}
+    "S:\\Egyetem\\Rendszerfejlesztés\\Client\\Napelem\\Napelem.csproj": {}
   },
   "projects": {
-    "S:\\Egyetem\\Rendszerfejlesztés\\Napelem\\Napelem\\Napelem.csproj": {
+    "S:\\Egyetem\\Rendszerfejlesztés\\Client\\Napelem\\Napelem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\Egyetem\\Rendszerfejlesztés\\Napelem\\Napelem\\Napelem.csproj",
+        "projectUniqueName": "S:\\Egyetem\\Rendszerfejlesztés\\Client\\Napelem\\Napelem.csproj",
         "projectName": "Napelem",
-        "projectPath": "S:\\Egyetem\\Rendszerfejlesztés\\Napelem\\Napelem\\Napelem.csproj",
+        "projectPath": "S:\\Egyetem\\Rendszerfejlesztés\\Client\\Napelem\\Napelem.csproj",
         "packagesPath": "C:\\Users\\skiba\\.nuget\\packages\\",
-        "outputPath": "S:\\Egyetem\\Rendszerfejlesztés\\Napelem\\Napelem\\obj\\",
+        "outputPath": "S:\\Egyetem\\Rendszerfejlesztés\\Client\\Napelem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

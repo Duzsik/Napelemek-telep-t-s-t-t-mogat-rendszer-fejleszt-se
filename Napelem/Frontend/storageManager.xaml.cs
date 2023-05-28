@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Napelem.Models;
 using System.Net.Http;
+using System.Net;
 
 namespace Napelem
 {
@@ -213,16 +214,16 @@ namespace Napelem
                     {
                         if (components[i].max_quantity< int.Parse(textBoxQuantity.Text))
                         {
-                            MessageBox.Show("The quantity is greater then the max quantity.");
+                            MessageBox.Show("The quantity is greater then the max quantity.", "Conflict");
                         }
                         else
                         {
-                            comp.quantity = int.Parse(textBoxQuantity.Text);
                             Storage stor = new Storage();
                             stor.level = int.Parse(textBoxLevel.Text);
                             stor.row = int.Parse(textBoxRow.Text);
                             stor.column = int.Parse(textBoxColumn.Text);
                             stor.componentID = comp.componentID;
+                            stor.current_quantity= int.Parse(textBoxQuantity.Text);
                             ComponentStorage compStor = new ComponentStorage();
                             compStor.Component = comp;
                             compStor.Storage = stor;
@@ -231,6 +232,12 @@ namespace Napelem
                             if (response.IsSuccessStatusCode == true)
                             {
                                 MessageBox.Show("Intake was successful.");
+                            }
+                            else if (response.StatusCode == HttpStatusCode.Conflict)
+                            {
+                                string errorMessage = await response.Content.ReadAsStringAsync();
+                                // Az errorMessage változóban lesz tárolva a konfliktussal kapcsolatos üzenet
+                                MessageBox.Show(errorMessage, "Conflict");
                             }
                         }
                     }
@@ -304,12 +311,8 @@ namespace Napelem
                     }
                     warehouseGrid.ItemsSource = filteredComponents;
                 }
-                
             }
-            
-           
         }
-
         private async void All(object sender, RoutedEventArgs e)
         {
             using var client = new HttpClient();
