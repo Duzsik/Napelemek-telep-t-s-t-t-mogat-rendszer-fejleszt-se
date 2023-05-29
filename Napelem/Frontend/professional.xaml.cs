@@ -279,9 +279,9 @@ namespace Napelem
                         }
                     }
                     EstimatedPrice.Content = price.ToString();
-                    //ITT HIBA, SEGÍTSÉG, MÁR NEM FOG AZ AGYAM
                     ProjectComponent projectComp = new ProjectComponent();
                     projectComp.project = project;
+                    bool wait = false;
                     for (int i = 0; i < reservations.Count; i++)
                     {
                         for (int j = 0; j < components.Count; j++)
@@ -289,19 +289,23 @@ namespace Napelem
                             if (reservations[i].projectID == projectComp.project.projectID && reservations[i].componentID == components[j].componentID)
                             {
                                 projectComp.component = components[j];
-                                if (components[i].componentID == reservations[i].componentID)
+                                if (components[j].componentID == reservations[i].componentID)
                                 {
-                                    if (components[i].quantity < projectComp.component.quantity)
+                                    if (components[j].quantity < reservations[i].reservationQuantity)
                                     {
-                                        projectComp.project.status = "Wait";
-                                    }
-                                    else if (components[i].quantity >= projectComp.component.quantity)
-                                    {
-                                        projectComp.project.status = "Scheduled";
+                                        wait = true;
                                     }
                                 }
                             }
                         }
+                    }
+                    if(wait==true)
+                    {
+                        projectComp.project.status = "Wait";
+                    }
+                    else
+                    {
+                        projectComp.project.status = "Scheduled";
                     }
                     var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp.project), System.Text.Encoding.UTF8, "application/json");
                     response = await client.PostAsync($"api/Project/ChangeStatus", content);
