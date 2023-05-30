@@ -43,6 +43,7 @@ namespace Napelem
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
             projectcmbbx.Items.Clear();
+            FilterProject.Items.Clear();
             var response = await client.GetAsync($"api/Project/ListProjects");
             if (response.IsSuccessStatusCode == true)
             {
@@ -54,7 +55,11 @@ namespace Napelem
                 for (int i = 0; i < projects.Count; i++)
                 {
                     projectcmbbx.Items.Add(projects[i].projectID + " " + projects[i].name);
-                    FilterProject.Items.Add(projects[i].projectID + " " + projects[i].name);
+                    if (projects[i].status=="Scheduled")
+                    {
+                        FilterProject.Items.Add(projects[i].projectID + " " + projects[i].name);
+                    }
+                    
                 }
 
             }
@@ -66,10 +71,12 @@ namespace Napelem
         }
         public class ReservationsAndProjectId
         {
-            public List<Reservation> resers;
-            public int projectId;
+            public List<Reservation> resers { get; set; }
+            public int projectId { get; set; }
         }
 
+        
+        
         private async void ChangeProjectStatus(object sender, RoutedEventArgs e)
         {
             using var client = new HttpClient();
@@ -131,36 +138,50 @@ namespace Napelem
         {
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
-            string[] selectedProject = FilterProject.SelectedItem.ToString().Split(' ');
-            int id = int.Parse(selectedProject[0]);
-            var response = await client.GetAsync($"api/Project?projectID={id.ToString()}");
-            response.EnsureSuccessStatusCode();
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var project = JsonConvert.DeserializeObject<Project>(responseBody);
-            List<Storage> filteredComponent = new List<Storage>();
-            response = await client.GetAsync($"api/Reservation/ListReservation");
-            if (response.IsSuccessStatusCode == true)
+            if(FilterProject.Items.Count!=0)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                var obj = JsonConvert.DeserializeObject<JObject>(json);
-                var reservationJson = obj["value"].ToString();
-                var reservations = JsonConvert.DeserializeObject<List<Reservation>>(reservationJson);
-
-                for (int i = 0; i < reservations.Count; i++)
+                string[] selectedProject = FilterProject.SelectedItem.ToString().Split(' ');
+                int id = int.Parse(selectedProject[0]);
+                var response = await client.GetAsync($"api/Project?projectID={id.ToString()}");
+                response.EnsureSuccessStatusCode();
+                var responseBody = await response.Content.ReadAsStringAsync();
+                var project = JsonConvert.DeserializeObject<Project>(responseBody);
+                List<Storage> filteredComponent = new List<Storage>();
+                response = await client.GetAsync($"api/Reservation/ListReservation");
+                if (response.IsSuccessStatusCode == true)
                 {
-                    if (reservations[i].projectID == project.projectID)
+                    var json = await response.Content.ReadAsStringAsync();
+                    var obj = JsonConvert.DeserializeObject<JObject>(json);
+                    var reservationJson = obj["value"].ToString();
+                    var reservations = JsonConvert.DeserializeObject<List<Reservation>>(reservationJson);
+
+                    for (int i = 0; i < reservations.Count; i++)
                     {
-                        response = await client.GetAsync($"api/Storage/GetStorage?componentID={reservations[i].componentID.ToString()}");
-                        response.EnsureSuccessStatusCode();
-                        //itt valami hibádzik
-                        responseBody = await response.Content.ReadAsStringAsync();
-                        var stor = JsonConvert.DeserializeObject<Storage>(responseBody);
-                        filteredComponent.Add(stor);
+                        if (reservations[i].projectID == project.projectID)
+                        {
+                            try
+                            {
+                                response = await client.GetAsync($"api/Storage/GetStorage?componentID={reservations[i].componentID.ToString()}");
+                                response.EnsureSuccessStatusCode();
+                                //itt valami hibádzik
+                                responseBody = await response.Content.ReadAsStringAsync();
+                                var stor = JsonConvert.DeserializeObject<Storage>(responseBody);
+                                filteredComponent.Add(stor);
+                            }catch (Exception ex)
+                            {
+                                MessageBox.Show("The selected project does not have a reservation.");
+                            }
+                            
+                        }
                     }
                 }
+                WorkerDataGrid.ItemsSource = filteredComponent;
             }
-
-            WorkerDataGrid.ItemsSource = filteredComponent;
+                
+            
+            
+            
+            
         }
         private void refreshBtn(object sender, RoutedEventArgs e)
         {

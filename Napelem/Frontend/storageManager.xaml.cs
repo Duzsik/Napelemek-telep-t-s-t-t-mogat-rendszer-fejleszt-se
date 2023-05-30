@@ -198,52 +198,61 @@ namespace Napelem
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
             Component comp = new Component();
-            string[] compData = IntakeProductComboBox.Text.Split(' ');
-            comp.componentID = int.Parse(compData[0]);
-
-            var response = await client.GetAsync($"api/Component/SendComponent");
-            if (response.IsSuccessStatusCode == true)
+            if(IntakeProductComboBox.Text!=String.Empty)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                var obj = JsonConvert.DeserializeObject<JObject>(json);
-                var componentsJson = obj["value"].ToString();
-                var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
-                for (int i = 0; i < components.Count; i++)
-                {
-                    if (components[i].componentID == comp.componentID)
-                    {
-                        if (components[i].max_quantity< int.Parse(textBoxQuantity.Text))
-                        {
-                            MessageBox.Show("The quantity is greater then the max quantity.", "Conflict");
-                        }
-                        else
-                        {
-                            Storage stor = new Storage();
-                            stor.level = int.Parse(textBoxLevel.Text);
-                            stor.row = int.Parse(textBoxRow.Text);
-                            stor.column = int.Parse(textBoxColumn.Text);
-                            stor.componentID = comp.componentID;
-                            stor.current_quantity= int.Parse(textBoxQuantity.Text);
-                            ComponentStorage compStor = new ComponentStorage();
-                            compStor.Component = comp;
-                            compStor.Storage = stor;
-                            var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(compStor), System.Text.Encoding.UTF8, "application/json");
-                            response = await client.PostAsync($"api/Storage/AddComponentToStorage", content);
-                            if (response.IsSuccessStatusCode == true)
-                            {
-                                MessageBox.Show("Intake was successful.");
-                            }
-                            else if (response.StatusCode == HttpStatusCode.Conflict)
-                            {
-                                string errorMessage = await response.Content.ReadAsStringAsync();
-                                // Az errorMessage változóban lesz tárolva a konfliktussal kapcsolatos üzenet
-                                MessageBox.Show(errorMessage, "Conflict");
-                            }
-                        }
-                    }
+                string[] compData = IntakeProductComboBox.Text.Split(' ');
+                comp.componentID = int.Parse(compData[0]);
 
+                var response = await client.GetAsync($"api/Component/SendComponent");
+                if (response.IsSuccessStatusCode == true)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var obj = JsonConvert.DeserializeObject<JObject>(json);
+                    var componentsJson = obj["value"].ToString();
+                    var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
+                    for (int i = 0; i < components.Count; i++)
+                    {
+                        if (components[i].componentID == comp.componentID)
+                        {
+                            if (components[i].max_quantity < int.Parse(textBoxQuantity.Text))
+                            {
+                                MessageBox.Show("The quantity is greater then the max quantity.", "Conflict");
+                            }
+                            else
+                            {
+                                Storage stor = new Storage();
+                                stor.level = int.Parse(textBoxLevel.Text);
+                                stor.row = int.Parse(textBoxRow.Text);
+                                stor.column = int.Parse(textBoxColumn.Text);
+                                stor.componentID = comp.componentID;
+                                stor.current_quantity = int.Parse(textBoxQuantity.Text);
+                                ComponentStorage compStor = new ComponentStorage();
+                                compStor.Component = comp;
+                                compStor.Storage = stor;
+                                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(compStor), System.Text.Encoding.UTF8, "application/json");
+                                response = await client.PostAsync($"api/Storage/AddComponentToStorage", content);
+                                if (response.IsSuccessStatusCode == true)
+                                {
+                                    MessageBox.Show("Intake was successful.");
+                                }
+                                else if (response.StatusCode == HttpStatusCode.Conflict)
+                                {
+                                    string errorMessage = await response.Content.ReadAsStringAsync();
+                                    // Az errorMessage változóban lesz tárolva a konfliktussal kapcsolatos üzenet
+                                    MessageBox.Show(errorMessage, "Conflict");
+                                }
+                            }
+                        }
+
+                    }
                 }
+
             }
+            else
+            {
+                MessageBox.Show("Select a product.");
+            }
+           
 
             
         }
@@ -263,7 +272,7 @@ namespace Napelem
                 var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
                 for (int i = 0; i < components.Count; i++)
                 {
-                    if (components[i].quantity <= 1)
+                    if (components[i].quantity <= 5)
                     {
                         filteredComponents.Add(components[i]);
                     }

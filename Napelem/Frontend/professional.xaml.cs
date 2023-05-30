@@ -244,7 +244,7 @@ namespace Napelem
 
         private async void CalculatePrice(object sender, RoutedEventArgs e)
         {
-            int price = 0;
+            
             string[] projectData = ReservationComboBox.Text.Split(' ');
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7186/");
@@ -252,7 +252,7 @@ namespace Napelem
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
             var project = JsonConvert.DeserializeObject<Project>(responseBody);
-            price += project.project_price;
+           
            
             response = await client.GetAsync($"api/Reservation/ListReservation");
             if (response.IsSuccessStatusCode == true)
@@ -274,11 +274,11 @@ namespace Napelem
                         {
                             if (reservations[i].projectID == project.projectID && reservations[i].componentID == components[j].componentID)
                             {
-                                price += reservations[i].reservationQuantity * components[j].price;
+                                project.project_price += reservations[i].reservationQuantity * components[j].price;
                             }
                         }
                     }
-                    EstimatedPrice.Content = price.ToString();
+                    EstimatedPrice.Content = project.project_price.ToString();
                     ProjectComponent projectComp = new ProjectComponent();
                     projectComp.project = project;
                     bool wait = false;
@@ -302,13 +302,31 @@ namespace Napelem
                     if(wait==true)
                     {
                         projectComp.project.status = "Wait";
+                        Log log = new Log()
+                        {
+                            projectID = projectComp.project.projectID,
+                            status = projectComp.project.status,
+                            timestamp = DateTime.Now.ToString()
+                        };
+                        var logContent = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
+                        response = await client.PostAsync($"api/Log/AddLog", logContent);
                     }
                     else
                     {
                         projectComp.project.status = "Scheduled";
+                        Log log = new Log()
+                        {
+                            projectID = projectComp.project.projectID,
+                            status = projectComp.project.status,
+                            timestamp = DateTime.Now.ToString()
+
+                        };
+                        var logContent = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
+                        response = await client.PostAsync($"api/Log/AddLog", logContent);
                     }
                     var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp.project), System.Text.Encoding.UTF8, "application/json");
                     response = await client.PostAsync($"api/Project/ChangeStatus", content);
+                    
                 }
             }
 
