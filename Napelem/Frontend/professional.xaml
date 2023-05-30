@@ -15,29 +15,6 @@
                 <TabItem Header="Projects" Background="#FF1B1919" Foreground="Orange" BorderBrush="#FF1B1919" BorderThickness="0">
                     <Grid Background="Transparent">
                         <Label Content="Professional's projects" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Orange"/>
-                        <TextBox HorizontalAlignment="Left" Margin="312,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" Height="20">
-                            <TextBox.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </TextBox.Resources>
-
-                        </TextBox>
-                        <TextBox  HorizontalAlignment="Left" Margin="470,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" Height="20">
-                            <TextBox.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
-                        <Button Style="{StaticResource RoundeButtonTemplate}"
-                                Content="Filter project" HorizontalAlignment="Left"
-                                Margin="621,30,0,0"
-                                VerticalAlignment="Top"
-                                Width="120" Height="20"
-                                FontWeight="Bold"
-                                Foreground="Black"
-                                Background="Orange"/>
                         <Button Style="{StaticResource RoundeButtonTemplate}"
                                 Content="Refresh" HorizontalAlignment="Left"
                                 Margin="26,46,0,0"
@@ -60,8 +37,6 @@
                                 Foreground="Black"
                                 Background="Orange" Click="changeStatus"/>
                         <Button x:Name="backBtnProjects" Style="{StaticResource ExitButtonTemplate}" Content="Back" Width="51" FontSize="16" FontWeight="Bold" Click="Project_exitBtn" />
-                        <Label Content="Name" HorizontalAlignment="Left" Margin="311,3,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                        <Label Content="Status" HorizontalAlignment="Left" Margin="468,4,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="White"/>
                         <ComboBox Name="statusCbxBox" Width="120" Margin="506,363,168,36" Height="NaN">
                             <ComboBoxItem Content="Completed"/>
                             <ComboBoxItem Content="Failed"/>
