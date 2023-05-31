@@ -3,10 +3,6 @@
 A README egy C# nyelven írt WPF alkalmazás dokumentációját tartalmazza. Az alkalmazás egy napelemes projektek kezelésére szolgáló szoftver. A következő részekből áll:
 
 MainWindow.xaml.cs
-Metódusok:
--MainWindow(): Az osztály konstruktora, amely inicializálja az ablakot.
-
-Metódusok részletesen:
 - ShowPass_Checked: Ez a metódus a jelszó megjelenítésének kezelését végzi. Amikor a "ShowPass" jelölőnégyzet be van pipálva, a jelszó szövegmező tartalmát beállítja a jelszóvédett mező értékére, majd a jelszóvédett mezőt elrejti (Visibility.Collapsed) és a szövegmezőt megjeleníti (Visibility.Visible).
 
 - ShowPass_Unchecked: Ez a metódus a jelszó elrejtésének kezelését végzi. Amikor a "ShowPass" jelölőnégyzet nincs bepipálva, a jelszóvédett mező értékét beállítja a szövegmező tartalmára, majd a szövegmezőt elrejti (Visibility.Collapsed) és a jelszóvédett mezőt megjeleníti (Visibility.Visible).
