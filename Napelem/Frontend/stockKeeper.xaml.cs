@@ -108,9 +108,9 @@ namespace Napelem
                         {
                             if (project.status != "InProgress")
                             {
+                                project.status = "InProgress";
                                 MessageBox.Show("Status changed.");
-                            }
-                            project.status = "InProgress";
+                            }                            
                             Log log = new Log()
                             {
                                 projectID = project.projectID,
@@ -126,6 +126,10 @@ namespace Napelem
                         }
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Project status is incorrect!", "WARNING!");
             }
         }
 

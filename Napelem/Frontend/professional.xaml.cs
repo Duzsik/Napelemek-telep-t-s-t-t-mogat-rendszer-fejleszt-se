@@ -146,37 +146,42 @@ namespace Napelem
                 var componentsJson = obj["value"].ToString();
                 var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
                 Project pro = new Project();
-                string[] proData = ProjectIdComboBox.Text.Split(' ');
-                pro.projectID = int.Parse(proData[0]);
-
-
-
-                Component comp = new Component();
-                string[] compData = assetSelectComboBox.Text.Split(' ');
-                comp.componentID = int.Parse(compData[0]);
-
-                ProjectComponent projectComp = new ProjectComponent();
-                projectComp.component = comp;
-                projectComp.project = pro;
-                projectComp.qty = int.Parse(qtyTextBox.Text);
-                projectComp.project.status = "Draft";
-                
-                Log log = new Log()
+                if (ProjectIdComboBox.Text != String.Empty && assetSelectComboBox.Text != String.Empty && qtyTextBox.Text != String.Empty)
                 {
-                    projectID = projectComp.project.projectID,
-                    status = projectComp.project.status,
-                    timestamp = DateTime.Now.ToString()
-                };
-                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp), System.Text.Encoding.UTF8, "application/json");
-                response = await client.PostAsync($"api/Reservation/AddReservation", content);
-                if (response.IsSuccessStatusCode == true)
-                {
-                    MessageBox.Show("Reservation was successful.");
+                    string[] proData = ProjectIdComboBox.Text.Split(' ');
+                    pro.projectID = int.Parse(proData[0]);
+                    Component comp = new Component();
+                    string[] compData = assetSelectComboBox.Text.Split(' ');
+                    comp.componentID = int.Parse(compData[0]);
+
+                    ProjectComponent projectComp = new ProjectComponent();
+                    projectComp.component = comp;
+                    projectComp.project = pro;
+                    projectComp.qty = int.Parse(qtyTextBox.Text);
+                    projectComp.project.status = "Draft";
+
+                    Log log = new Log()
+                    {
+                        projectID = projectComp.project.projectID,
+                        status = projectComp.project.status,
+                        timestamp = DateTime.Now.ToString()
+                    };
+                    var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp), System.Text.Encoding.UTF8, "application/json");
+                    response = await client.PostAsync($"api/Reservation/AddReservation", content);
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        MessageBox.Show("Reservation was successful.");
+                    }
+                    content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp.project), System.Text.Encoding.UTF8, "application/json");
+                    response = await client.PostAsync($"api/Project/ChangeStatus", content);
+                    content = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
+                    response = await client.PostAsync($"api/Log/AddLog", content);
                 }
-                content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp.project), System.Text.Encoding.UTF8, "application/json");
-                response = await client.PostAsync($"api/Project/ChangeStatus", content);
-                content = new StringContent(System.Text.Json.JsonSerializer.Serialize(log), System.Text.Encoding.UTF8, "application/json");
-                response = await client.PostAsync($"api/Log/AddLog", content);
+                else
+                {
+                    MessageBox.Show("Fill all fields!", "Warning!");
+                }
+                
             }
 
             
@@ -193,7 +198,7 @@ namespace Napelem
             addPro.project_location = projectLocationTextBox.Text;
             addPro.project_orderer = CostumerNameTextBox.Text;
             addPro.wage = 2000;
-            addPro.project_price = addPro.estimated_Time*addPro.wage;
+            addPro.project_price = 0;
             addPro.status = "New";
             addPro.employeeID = emp.employeeID;
             Log log = new Log()
@@ -268,13 +273,15 @@ namespace Napelem
                     obj = JsonConvert.DeserializeObject<JObject>(json);
                     var componentsJson = obj["value"].ToString();
                     var components = JsonConvert.DeserializeObject<List<Component>>(componentsJson);
+                    project.project_price = 0;
+                    project.project_price += project.wage * project.estimated_Time;
                     for (int i = 0; i < reservations.Count; i++)
                     {
                         for (int j = 0; j < components.Count; j++)
                         {
                             if (reservations[i].projectID == project.projectID && reservations[i].componentID == components[j].componentID)
                             {
-                                project.project_price += reservations[i].reservationQuantity * components[j].price;
+                                project.project_price += reservations[i].reservationQuantity * components[j].price ;
                             }
                         }
                     }
@@ -326,7 +333,10 @@ namespace Napelem
                     }
                     var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp.project), System.Text.Encoding.UTF8, "application/json");
                     response = await client.PostAsync($"api/Project/ChangeStatus", content);
-                    
+
+                    content = new StringContent(System.Text.Json.JsonSerializer.Serialize(projectComp.project), System.Text.Encoding.UTF8, "application/json");
+                    response = await client.PostAsync($"api/Project/ChangePrice", content);
+
                 }
             }
 
