@@ -3,76 +3,87 @@
 A README egy C# nyelven írt WPF alkalmazás dokumentációját tartalmazza. Az alkalmazás egy napelemes projektek kezelésére szolgáló szoftver. A következő részekből áll:
 
 MainWindow.xaml.cs
-
-- MainWindow osztály: Ez az osztály az alkalmazás főablakát definiálja és a Window osztályból származik. Az osztály konstruktorában inicializáljuk az ablakot.
-
-- ShowPass_Checked metódus: Ez a metódus akkor fut le, ha a "Show Password" jelölőnégyzetet bekapcsolják. A jelszó mezőben megjeleníti a beírt szöveget.
-
-- ShowPass_Unchecked metódus: Ez a metódus akkor fut le, ha a "Show Password" jelölőnégyzetet kikapcsolják. A jelszó mezőben megjeleníti a beírt szöveget.
-
-- Button_Click metódus: Ez a metódus akkor fut le, ha a "Login" gombot megnyomják. Létrehoz egy Employee objektumot, beállítja a felhasználónevet és jelszót, majd létrehoz egy HttpClient objektumot. Az API végpontot a BaseAddress tulajdonságon keresztül állítjuk be. Ezután aszinkron módon elküldünk egy GET kérést az API végpontnak, amely a felhasználónevet és jelszót tartalmazza. Ha a válasz státuszkódja BadRequest (HTTP 400), akkor a felhasználónevet vagy jelszót hibásnak jelzi. Ellenkező esetben olvassa el a válasz tartalmát és alakítsa át az Employee objektummá. A felhasználó szerepétől függően megnyitja az adott ablakot és bezárja az aktuális ablakot.
-
-- Grid_ContextMenuClosing metódus: Ez a metódus akkor fut le, ha a felhasználó bezárja a menüt.
-
-- closeClick metódus: Ez a metódus akkor fut le, ha a felhasználó bezárja az alkalmazást. A Application.Current.Shutdown() metódussal leállítja az alkalmazást.
-
-storageManager.xaml.cs
-
-- A kód elején importálásra kerülnek a szükséges névterek és osztályok.
-
-- ComponentStorage osztály: Ez az osztály tartalmazza a komponenst (Component osztály) és a raktárat (Storage osztály).
-
-- storageManager osztály: Ez az osztály felelős a raktárkezelő ablak megjelenítéséért és a komponensek és foglalások betöltéséért. Az osztály konstruktora inicializálja az ablakot, betölti a komponenseket, és hozzárendeli az eseménykezelőket.
-
-- exit metódus: Ez a metódus bezárja az aktuális ablakot és megjeleníti a főablakot.
-
-- LoadComponent metódus: Ez a metódus aszinkron módon lekéri a komponenseket az API végpontból, majd a választ feldolgozza és megjeleníti a felhasználói felületen. Az elkészült komponensek listája megjelenik a warehouseGrid adatrácsban.
-
-- LoadReservation metódus: Ez a metódus aszinkron módon lekéri a foglalásokat az API végpontból, majd a választ feldolgozza és megjeleníti a felhasználói felületen. Az elkészült foglalások listája megjelenik a warehouseGrid adatrácsban.
-
-- addItem metódus: Ez a metódus új komponenst ad hozzá az adatbázishoz a felhasználó által megadott adatok alapján. A komponens neve, ára és maximális mennyisége kerül megadásra a megfelelő szövegmezőkön keresztül.
-
-- changePrice_Quantity_Btn metódus: Ez a metódus megváltoztatja egy komponens árát és/vagy maximális mennyiségét a felhasználó által megadott értékek alapján. A módosításhoz a ProductComboBox mezőben kiválasztott komponens kerül felhasználásra.
-
-- SetStorageClick metódus: Ez a metódus raktározási műveletet hajt végre a felhasználó által megadott adatok alapján. Az eljárás ellenőrzi, hogy a kiválasztott komponens maximális mennyisége nem haladja-e meg a megadott raktárhelyen a tárolható mennyiséget. Ha a mennyiség megfelelő, a komponens és a raktárhely információit tartalmazó objektumot elküldi az API végpontnak.
-
-- lowQuantity metódus: Ez a metódus kiszűri és megjeleníti azokat a komponenseket, amelyeknél a mennyiség 5 vagy annál kevesebb.
-
-- missingQuantity metódus: Ez a metódus kiszűri és megjeleníti azokat a komponenseket, amelyeknél a készletmennyiség kisebb, mint a foglalások száma.
-
-- All metódus: Ez a metódus megjeleníti az összes komponenst a raktárban.
-
-- refreshBtn metódus: Ez a metódus újra betölti a komponenseket az adatbázisból.
-
-stockKeeper.xaml.cs
 Metódusok:
-
-- exit(): Ez a metódus bezárja az aktuális ablakot és megjeleníti a főablakot.
-
-- stockKeeper(): Az osztály konstruktora, amely inicializálja az ablakot és meghívja a Load() metódust.
+-MainWindow(): Az osztály konstruktora, amely inicializálja az ablakot.
 
 Metódusok részletesen:
-- Load(): Ez a metódus aszinkron módon tölti be az ablakot. Létrehoz egy HttpClient objektumot, beállítja a BaseAddress-et a "https://localhost:7186/" címre. Törli a projectcmbbx és a FilterProject elemeket. Lekéri az API-n keresztül a projektlistát, majd feldolgozza a választ. A projektek listáját beállítja a ProjectDataGrid adatforrásként. Végigmegy a projektek listáján, és hozzáadja az elemeket a projectcmbbx és a FilterProject elemekhez.
+- ShowPass_Checked: Ez a metódus a jelszó megjelenítésének kezelését végzi. Amikor a "ShowPass" jelölőnégyzet be van pipálva, a jelszó szövegmező tartalmát beállítja a jelszóvédett mező értékére, majd a jelszóvédett mezőt elrejti (Visibility.Collapsed) és a szövegmezőt megjeleníti (Visibility.Visible).
 
-- ChangeProjectStatus(object sender, RoutedEventArgs e): Ez a metódus aszinkron módon végzi a projekt státuszának változtatását. Létrehoz egy HttpClient objektumot, beállítja a BaseAddress-et a "https://localhost:7186/" címre. Kiolvassa a projectcmbbx kiválasztott elemét, majd lekéri az API-n keresztül a projekthez tartozó adatokat. Ha sikeres a kérés, feldolgozza a választ, majd elküldi a szükséges adatokat a megfelelő végpontokra.
+- ShowPass_Unchecked: Ez a metódus a jelszó elrejtésének kezelését végzi. Amikor a "ShowPass" jelölőnégyzet nincs bepipálva, a jelszóvédett mező értékét beállítja a szövegmező tartalmára, majd a szövegmezőt elrejti (Visibility.Collapsed) és a jelszóvédett mezőt megjeleníti (Visibility.Visible).
 
-- ProjectSelection(object sender, SelectionChangedEventArgs e): Ez a metódus aszinkron módon végzi a projekt kiválasztásának kezelését. Létrehoz egy HttpClient objektumot, beállítja a BaseAddress-et a "https://localhost:7186/" címre. Ellenőrzi, hogy van-e kiválasztott elem a FilterProject elemen. Ha van, lekéri az API-n keresztül a kiválasztott projekt adatait, majd feldolgozza a választ és frissíti a WorkerDataGrid adatforrást.
+- Button_Click: Ez a metódus végzi a bejelentkezés gombra kattintás kezelését. Létrehoz egy Employee objektumot a felhasználónév és jelszó mezők tartalmával. Létrehoz egy HttpClient objektumot, beállítja a BaseAddress-et a "https://localhost:7186/" címre. Kér egy HTTP GET kérést az API-hoz, hogy ellenőrizze a felhasználónevét és jelszavát. A válasz alapján megjeleníti az adott felhasználó szerepének megfelelő ablakot.
 
-- refreshBtn(object sender, RoutedEventArgs e): Ez a metódus frissíti az ablakot a Load() metódus meghívásával.
+- Grid_ContextMenuClosing: Ez a metódus üres metódus, nem csinál semmit. Az eseménykezelő az ablak kontextusmenü bezárását kezeli.
+
+- closeClick: Ez a metódus kezeli az ablak bezárását. Az alkalmazást leállítja (Application.Current.Shutdown()).
 
 professional.xaml.cs
-- ProjectComponent osztály: Ez az osztály a projekt komponenseit reprezentálja, és tartalmazza a projektet (Project osztály), a komponenst (Component osztály) és a mennyiséget (qty) tulajdonságokat.
+- Az alkalmazás Napelem névtérben található, és tartalmazza az alkalmazás főosztályát, a professional osztályt, amely a Window osztályból származik. Az Interaction logic for professional.xaml komment jelzi, hogy az osztály az alkalmazás "professional" felhasználói felületét kezeli.
 
-- professional osztály: Ez az osztály felelős a főablak megjelenítéséért és a projektek kezeléséért. Az osztály konstruktorában betölti a komponenseket és a projekteket, majd a felhasználói felületen megjeleníti őket.
+- Az Employee osztályhoz hasonlóan az ProjectComponent osztály az adatok tárolására szolgál, amelyek a projekt és a komponensek közötti kapcsolatot reprezentálják. Az Employee osztályban található project, component és qty tulajdonságok.
 
-- LoadCompontents metódus: Ez a metódus aszinkron módon lekéri a komponenseket egy API végpontból, majd a választ feldolgozza és megjeleníti a felhasználói felületen.
+- Az exit() metódus egy új MainWindow objektumot hoz létre, majd bezárja a jelenlegi ablakot és megjeleníti az új ablakot. Ez a metódus a kilépés funkciót valósítja meg az alkalmazásban.
 
-- LoadProjects metódus: Ez a metódus aszinkron módon lekéri a projekteket és a foglalásokat az API végpontokról, majd a választ feldolgozza és megjeleníti a felhasználói felületen.
+- Az professional osztály konstruktora inicializálja az osztályt, betölti a komponenseket és a projekteket, és beállítja az emp adattagot.
 
-- exit metódus: Ez a metódus bezárja a jelenlegi ablakot és megjeleníti a főablakot.
+- A LoadComponents() metódus aszinkron módon lekéri a komponenseket a szerverről. Egy HTTP kérésben elküldi a GET kérést a api/Component/SendComponent végpontra. Ha a kérés eredményes volt, az adatokat JSON formátumban kapja vissza, majd a választ feldolgozza és betölti a komponenseket az assetSelectComboBox és assetGrid vezérlőkbe.
 
-- Egyéb eseménykezelő metódusok: Az osztályban találhatók olyan metódusok, amelyek kezelik a különböző eseményeket, például gombnyomást vagy állapotváltozást.
+- A LoadProjects() metódus betölti a projekteket és a foglalásokat az alkalmazásba. Először lekéri a projekteket a szerverről egy HTTP GET kéréssel a api/Project/ListProjects végponton keresztül. Ha a válasz sikeres volt, feldeldolgozza a választ és betölti az adatokat a projectGrid vezérlőbe.
 
-A kódban gyakran találhatóak HttpClient objektumok, amelyek segítségével HTTP kéréseket küldenek az API végpontokra, majd a válaszokat feldolgozzák és megjelenítik a felhasználói felületen. Az alkalmazás az "https://localhost:7186/" alapcímen található API végpontokat használja a projektek és komponensek kezeléséhez.
+- A loadEmployee() metódus lekéri a dolgozók adatait a szerverről egy HTTP GET kéréssel a api/Employee/GetEmployees végponton keresztül. Ha a válasz sikeres volt, az adatokat JSON formátumban kapja vissza, majd feldolgozza és betölti az adatokat a emp adattagba.
 
-Az alkalmazás fő funkciói közé tartozik a projektek és komponensek betöltése, új projektek és foglalások létrehozása, projektek státuszának módosítása, valamint az árak kiszámítása és megjelenítése.
+- Az addButton_Click metódus kezeli a "Hozzáadás" gombra kattintást. Először megnézi, hogy van-e kiválasztott projekt és komponens. Ha igen, akkor ellenőrzi a mennyiséget, majd létrehoz egy új ProjectComponent objektumot a kiválasztott adatokkal. Hozzáadja ezt az objektumot az emp adattaghoz és frissíti a empGrid vezérlőt.
+
+- Az removeButton_Click metódus kezeli a "Törlés" gombra kattintást. Ellenőrzi, hogy van-e kiválasztott elem a empGrid-ben. Ha igen, akkor eltávolítja az adott elemet az emp adattagból és frissíti a empGrid vezérlőt.
+
+- Az exitButton_Click metódus kezeli a "Kilépés" gombra kattintást. Meghívja a exit() metódust, amely bezárja az aktuális ablakot és megjeleníti a fő ablakot.
+
+- Az alkalmazás a professional.xaml fájlban definiálja a felhasználói felületet, amely tartalmazza a különböző vezérlőket, például a assetSelectComboBox, assetGrid, projectGrid, empGrid stb. Ezeket a vezérlőket az x:Name attribútum segítségével lehet elérni a kódban.
+
+storageManager.xaml.cs
+- Az osztály első része a ComponentStorage osztályt tartalmazza, amely két tulajdonságot definiál: Component és Storage. Ez a két tulajdonság tárolja az alkatrész és raktárhely információit.
+
+- Ezután következik maga a storageManager osztály, amely a Window osztályból származik. Az osztályban találhatóak a különböző metódusok és eseménykezelők, amelyek a felhasználói felület működését és interakcióit kezelik.
+
+- A storageManager osztályban található néhány fontos metódus:
+
+- exit(): Ez a metódus létrehoz egy MainWindow példányt, bezárja az aktuális ablakot (storageManager), majd megjeleníti a fő ablakot (MainWindow).
+
+- LoadComponent(): Ez a metódus lekéri a komponensek adatait a szerverről egy HTTP GET kéréssel a api/Component/SendComponent végponton keresztül. Ha a válasz sikeres volt, a választ JSON formátumban kapja vissza, majd feldolgozza és betölti az adatokat a IntakeProductComboBox és ProductComboBox vezérlőkbe. A komponensek listáját hozzárendeli a warehouseGrid vezérlőhöz.
+
+- LoadReservation(): Ez a metódus lekéri a foglalások adatait a szerverről egy HTTP GET kéréssel a api/Reservation/ListReservation végponton keresztül. Ha a válasz sikeres volt, a választ JSON formátumban kapja vissza, majd feldolgozza és betölti az adatokat a warehouseGrid vezérlőbe.
+
+- storageManager() konstruktor: Ez a konstruktor inicializálja az osztályt. Meghívja a InitializeComponent() metódust, amely inicializálja a felhasználói felületet. Ezután meghívja a LoadComponent() metódust a komponensek betöltéséhez. Végül hozzárendeli az ablak bezárásának eseményét a Closing eseménykezelőhöz.
+
+- mainExitBtn_Click(): Ez az eseménykezelő reagál a mainExitBtn gombra kattintásra. Hívja a exit() metódust a kilépéshez.
+
+- addItem(): Ez az eseménykezelő reagál az addItem gombra kattintásra. Létrehoz egy HttpClient példányt, és beállítja a kiszolgáló alapcímét. Ezután létrehoz egy új Component példányt az adatokkal, amelyeket a felhasználó megadott a megfelelő szövegdobozokban. A komponens adatait JSON formátumba alakítja, majd egy HTTP POST kéréssel elküldi a api/Component/AddComponent végpontra. A választ feldolgozza, és megjelenít egy üzenetet a felhasználónak.
+
+- changePrice_Quantity_Btn(): Ez az eseménykezelő reagál a changePrice_Quantity_Btn gombra kattintásra. Létrehoz egy HttpClient példányt, és beállítja a kiszolgáló alapcímét. A felhasználó által kiválasztott komponens adatait beolvassa a ProductComboBox szövegdobozból. A megadott új árat vagy mennyiséget beállítja a komponensben, majd JSON formátumba alakítja és elküldi egy HTTP POST kéréssel a megfelelő végpontra (api/Component/ChangeMaxQuantity vagy api/Component/ChangePrice). A választ feldolgozza, és megjelenít egy üzenetet a felhasználónak.
+
+- SetStorageClick(): Ez az eseménykezelő reagál a SetStorageClick gombra kattintásra. Létrehoz egy HttpClient példányt, és beállítja a kiszolgáló alapcímét. A felhasználó által kiválasztott komponens azonosítóját beolvassa a IntakeProductComboBox szövegdobozból. Lekéri a komponensek adatait egy HTTP GET kéréssel a api/Component/SendComponent végponton keresztül. Ha a válasz sikeres volt, feldolgozza a választ, és megtalálja a kiválasztott komponenst. Ellenőrzi, hogy a megadott mennyiség nem haladja-e meg a maximális mennyiséget, majd létrehoz egy Storage és ComponentStorage példányt az adatokkal. Az adatokat JSON formátumba alakítja, majd elküldi egy HTTP POST kéréssel a api/Storage/AddComponentToStorage végpontra. A választ feldolgozza, és megjelenít egy üzenetet a felhasználónak.
+
+- lowQuantity(): Ez az eseménykezelő reagál a lowQuantity gombra kattintásra. Létrehoz egy HttpClient példányt, és beállítja a kiszolgáló alapcímét. Lekéri a komponensek adatait egy HTTP GET kéréssel a api/Component/SendComponent végponton keresztül. Ha a válasz sikeres volt, feldolgozza a választ, és a komponenseket ellenőrzi, hogy a mennyiségük 5 vagy annál kevesebb-e. Az eredményt egy új listában tárolja, majd ezt a listát jeleníti meg a warehouseGrid adatrácsban.
+
+- missingQuantity(): Ez az eseménykezelő reagál a missingQuantity gombra kattintásra. Létrehoz egy HttpClient példányt, és beállítja a kiszolgáló alapcímét. Lekéri a foglalások adatait egy HTTP GET kéréssel a api/Reservation/ListReservation végponton keresztül. Ha a válasz sikeres volt, feldolgozza a választ, és a foglalásokat tárolja egy listában. Ezután újra lekéri a komponensek adatait egy HTTP GET kéréssel a api/Component/SendComponent végponton keresztül. Ha a válasz sikeres volt, feldolgozza a választ, és a komponensek és a foglalások alapján ellenőrzi, hogy mely komponensek hiányoznak a foglalásokhoz képest. Az eredményt egy új listában tárolja, majd ezt a listát jeleníti meg a warehouseGrid adatrácsban.
+
+- All(): Ez az eseménykezelő reagál az All gombra kattintásra. Létrehoz egy HttpClient példányt, és beállítja a kiszolgáló alapcímét. Lekéri a komponensek adatait egy HTTP GET kéréssel a api/Component/SendComponent végponton keresztül. Ha a válasz sikeres volt, feldolgozza a választ, és a komponenseket jeleníti meg a warehouseGrid adatrácsban.
+
+- refreshBtn(): Ez az eseménykezelő reagál a refreshBtn gombra kattintásra. Hívja a LoadComponent() metódust, amely újra betölti a komponensek adatait a warehouseGrid adatrácsba.
+
+stockKeeper.xaml.cs
+- exit(): Ez a metódus egy új MainWindow objektumot hoz létre, bezárja az aktuális ablakot, majd megjeleníti az új MainWindow-t.
+
+- stockKeeper(): Ez a konstruktor inicializálja az ablakot (InitializeComponent()), majd meghívja a Load() metódust.
+
+- Load(): Ez az aszinkron metódus a HttpClient osztályt használva HTTP kérést küld az alkalmazás szerverének, hogy lekérje a projektek listáját. A válasz JSON formátumban érkezik, amelyet a JsonConvert osztály segítségével feldolgoz és deszerializál a List<Project> típusba. A projektek listáját beállítja a ProjectDataGrid adatforrásául, valamint a projectcmbbx és a FilterProject ComboBox elemeket feltölti a projektek adataival.
+
+- back(): Ez az eseménykezelő metódus hívódik meg, amikor a "back" gombot megnyomják. Bezárja az aktuális ablakot és megjeleníti a MainWindow-t.
+
+- ReservationsAndProjectId: Ez egy belső osztály, amely egy projekthez és a hozzá tartozó foglalásokhoz kapcsolódó adatokat tárolja.
+
+- ChangeProjectStatus(): Ez az aszinkron metódus hívódik meg, amikor a "Change Status" gombot megnyomják. A HttpClient osztály segítségével HTTP kérést küld az alkalmazás szerverének, hogy lekérje a kiválasztott projekt adatait. A válasz JSON formátumban érkezik, amelyet a JsonConvert osztály segítségével deszerializál a Project típusba. Ezután újabb HTTP kérést küld a foglalások lekérdezésére, majd a válasz alapján módosítja a projekt státuszát, és további műveleteket végez a log és a státusz mentésére.
+
+- ProjectSelection(): Ez az eseménykezelő metódus hívódik meg, amikor a FilterProject ComboBox kiválasztása megváltozik. A kiválasztott projekt alapján lekérdezi a hozzá tartozó foglalásokat, majd a WorkerDataGrid adatforrásaként beállítja azokat.
+
+- refreshBtn(): Ez az eseménykezelő metódus hívódik meg, amikor a "Refresh" gombot megnyomják. Újra betölti az alkalmazás projekt adatait a Load() metódus segítségével.
